@@ -1,0 +1,3574 @@
+package sm.image;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+
+public abstract class BinaryOp extends BufferedImageOpAdapter {
+
+    protected BufferedImage left;
+    final int MIN_VALUE = 0;
+    final int MAX_VALUE = 255;
+
+    public abstract int binaryOp(int i, int i1);
+
+    public BinaryOp(BufferedImage img) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method sm/image/BufferedImageOpAdapter."<init>":()V
+         * 4: aload_0
+         * 5: iconst_0
+         * 6: putfield      #2                  // Field MIN_VALUE:I
+         * 9: aload_0
+         * 10: sipush        255
+         * 13: putfield      #3                  // Field MAX_VALUE:I
+         * 16: aload_0
+         * 17: aload_1
+         * 18: putfield      #4                  // Field left:Ljava/awt/image/BufferedImage;
+         * 21: return
+         *  */
+        // </editor-fold>
+    }
+
+    public BufferedImage filter(BufferedImage right, BufferedImage dest) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: ifnonnull     14
+         * 4: new           #5                  // class java/lang/NullPointerException
+         * 7: dup
+         * 8: ldc           #6                  // String src image is null
+         * 10: invokespecial #7                  // Method java/lang/NullPointerException."<init>":(Ljava/lang/String;)V
+         * 13: athrow
+         * 14: aload_2
+         * 15: ifnonnull     25
+         * 18: aload_0
+         * 19: aload_1
+         * 20: aconst_null
+         * 21: invokevirtual #8                  // Method createCompatibleDestImage:(Ljava/awt/image/BufferedImage;Ljava/awt/image/ColorModel;)Ljava/awt/image/BufferedImage;
+         * 24: astore_2
+         * 25: aload_1
+         * 26: invokevirtual #9                  // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 29: astore_3
+         * 30: aload_2
+         * 31: invokevirtual #9                  // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 34: astore        4
+         * 36: aload_0
+         * 37: getfield      #4                  // Field left:Ljava/awt/image/BufferedImage;
+         * 40: invokevirtual #9                  // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 43: astore        5
+         * 45: new           #10                 // class sm/image/BufferedImageSampleIterator
+         * 48: dup
+         * 49: aload_2
+         * 50: invokespecial #11                 // Method sm/image/BufferedImageSampleIterator."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 53: astore        6
+         * 55: aload         6
+         * 57: invokevirtual #12                 // Method sm/image/BufferedImageSampleIterator.hasNext:()Z
+         * 60: ifeq          154
+         * 63: aload         6
+         * 65: invokevirtual #13                 // Method sm/image/BufferedImageSampleIterator.next:()Lsm/image/BufferedImageSampleIterator$SampleData;
+         * 68: astore        7
+         * 70: aload_3
+         * 71: aload         7
+         * 73: getfield      #14                 // Field sm/image/BufferedImageSampleIterator$SampleData.col:I
+         * 76: aload         7
+         * 78: getfield      #15                 // Field sm/image/BufferedImageSampleIterator$SampleData.row:I
+         * 81: aload         7
+         * 83: getfield      #16                 // Field sm/image/BufferedImageSampleIterator$SampleData.band:I
+         * 86: invokevirtual #17                 // Method java/awt/image/WritableRaster.getSample:(III)I
+         * 89: istore        8
+         * 91: aload         5
+         * 93: aload         7
+         * 95: getfield      #14                 // Field sm/image/BufferedImageSampleIterator$SampleData.col:I
+         * 98: aload         7
+         * 100: getfield      #15                 // Field sm/image/BufferedImageSampleIterator$SampleData.row:I
+         * 103: aload         7
+         * 105: getfield      #16                 // Field sm/image/BufferedImageSampleIterator$SampleData.band:I
+         * 108: invokevirtual #17                 // Method java/awt/image/WritableRaster.getSample:(III)I
+         * 111: istore        9
+         * 113: aload         7
+         * 115: aload_0
+         * 116: iload         8
+         * 118: iload         9
+         * 120: invokevirtual #18                 // Method binaryOp:(II)I
+         * 123: putfield      #19                 // Field sm/image/BufferedImageSampleIterator$SampleData.value:I
+         * 126: aload         4
+         * 128: aload         7
+         * 130: getfield      #14                 // Field sm/image/BufferedImageSampleIterator$SampleData.col:I
+         * 133: aload         7
+         * 135: getfield      #15                 // Field sm/image/BufferedImageSampleIterator$SampleData.row:I
+         * 138: aload         7
+         * 140: getfield      #16                 // Field sm/image/BufferedImageSampleIterator$SampleData.band:I
+         * 143: aload         7
+         * 145: getfield      #19                 // Field sm/image/BufferedImageSampleIterator$SampleData.value:I
+         * 148: invokevirtual #20                 // Method java/awt/image/WritableRaster.setSample:(IIII)V
+         * 151: goto          55
+         * 154: aload_2
+         * 155: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public BufferedImage createCompatibleDestImage(BufferedImage right, ColorModel destCM) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_2
+         * 1: ifnonnull     40
+         * 4: aload_0
+         * 5: getfield      #4                  // Field left:Ljava/awt/image/BufferedImage;
+         * 8: invokevirtual #9                  // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 11: invokevirtual #21                 // Method java/awt/image/WritableRaster.getNumBands:()I
+         * 14: aload_1
+         * 15: invokevirtual #9                  // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 18: invokevirtual #21                 // Method java/awt/image/WritableRaster.getNumBands:()I
+         * 21: if_icmpge     35
+         * 24: aload_0
+         * 25: getfield      #4                  // Field left:Ljava/awt/image/BufferedImage;
+         * 28: invokevirtual #22                 // Method java/awt/image/BufferedImage.getColorModel:()Ljava/awt/image/ColorModel;
+         * 31: astore_2
+         * 32: goto          40
+         * 35: aload_1
+         * 36: invokevirtual #22                 // Method java/awt/image/BufferedImage.getColorModel:()Ljava/awt/image/ColorModel;
+         * 39: astore_2
+         * 40: aload_0
+         * 41: getfield      #4                  // Field left:Ljava/awt/image/BufferedImage;
+         * 44: invokevirtual #23                 // Method java/awt/image/BufferedImage.getWidth:()I
+         * 47: aload_1
+         * 48: invokevirtual #23                 // Method java/awt/image/BufferedImage.getWidth:()I
+         * 51: invokestatic  #24                 // Method java/lang/Math.min:(II)I
+         * 54: istore_3
+         * 55: aload_0
+         * 56: getfield      #4                  // Field left:Ljava/awt/image/BufferedImage;
+         * 59: invokevirtual #25                 // Method java/awt/image/BufferedImage.getHeight:()I
+         * 62: aload_1
+         * 63: invokevirtual #25                 // Method java/awt/image/BufferedImage.getHeight:()I
+         * 66: invokestatic  #24                 // Method java/lang/Math.min:(II)I
+         * 69: istore        4
+         * 71: aload_2
+         * 72: iload_3
+         * 73: iload         4
+         * 75: invokevirtual #26                 // Method java/awt/image/ColorModel.createCompatibleWritableRaster:(II)Ljava/awt/image/WritableRaster;
+         * 78: astore        5
+         * 80: new           #27                 // class java/awt/image/BufferedImage
+         * 83: dup
+         * 84: aload_2
+         * 85: aload         5
+         * 87: aload_2
+         * 88: invokevirtual #28                 // Method java/awt/image/ColorModel.isAlphaPremultiplied:()Z
+         * 91: aconst_null
+         * 92: invokespecial #29                 // Method java/awt/image/BufferedImage."<init>":(Ljava/awt/image/ColorModel;Ljava/awt/image/WritableRaster;ZLjava/util/Hashtable;)V
+         * 95: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public int clampRange(int value, int min, int max) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_1
+         * 1: iload_2
+         * 2: if_icmpgt     7
+         * 5: iload_2
+         * 6: ireturn
+         * 7: iload_1
+         * 8: iload_3
+         * 9: if_icmplt     14
+         * 12: iload_3
+         * 13: ireturn
+         * 14: iload_1
+         * 15: ireturn
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.BufferedImage;
+
+public class BlendOp extends BinaryOp {
+
+    private float alpha;
+    private static final float DEFAULT_ALPHA = 0.5F;
+
+    public BlendOp(BufferedImage img, float alpha) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: aload_1
+         * 2: invokespecial #1                  // Method sm/image/BinaryOp."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 5: aload_0
+         * 6: fload_2
+         * 7: invokevirtual #2                  // Method setAlpha:(F)V
+         * 10: return
+         *  */
+        // </editor-fold>
+    }
+
+    public BlendOp(BufferedImage img) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: aload_1
+         * 2: ldc           #4                  // float 0.5f
+         * 4: invokespecial #5                  // Method "<init>":(Ljava/awt/image/BufferedImage;F)V
+         * 7: return
+         *  */
+        // </editor-fold>
+    }
+
+    public int binaryOp(int v1, int v2) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #6                  // Field alpha:F
+         * 4: iload_1
+         * 5: i2f
+         * 6: fmul
+         * 7: fconst_1
+         * 8: aload_0
+         * 9: getfield      #6                  // Field alpha:F
+         * 12: fsub
+         * 13: iload_2
+         * 14: i2f
+         * 15: fmul
+         * 16: fadd
+         * 17: f2i
+         * 18: istore_3
+         * 19: aload_0
+         * 20: iload_3
+         * 21: iconst_0
+         * 22: sipush        255
+         * 25: invokevirtual #8                  // Method clampRange:(III)I
+         * 28: ireturn
+         *  */
+        // </editor-fold>
+    }
+
+    public final void setAlpha(float alpha) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: fload_1
+         * 1: fconst_0
+         * 2: fcmpg
+         * 3: ifge          11
+         * 6: fconst_0
+         * 7: fstore_1
+         * 8: goto          19
+         * 11: fload_1
+         * 12: fconst_1
+         * 13: fcmpl
+         * 14: ifle          19
+         * 17: fconst_1
+         * 18: fstore_1
+         * 19: aload_0
+         * 20: fload_1
+         * 21: putfield      #6                  // Field alpha:F
+         * 24: return
+         *  */
+        // </editor-fold>
+    }
+
+    public float getAlpha() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #6                  // Field alpha:F
+         * 4: freturn
+         *  */
+        // </editor-fold>
+    }
+}
+/*
+ * Copyright (c) 1997, 2021, Oracle and/or its affiliates. All rights reserved.
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
+package java.awt.geom;
+
+import java.io.Serial;
+import java.io.Serializable;
+
+/**
+ * The {@code Rectangle2D} class describes a rectangle
+ * defined by a location {@code (x,y)} and dimension
+ * {@code (w x h)}.
+ * <p>
+ * This class is only the abstract superclass for all objects that
+ * store a 2D rectangle.
+ * The actual storage representation of the coordinates is left to
+ * the subclass.
+ *
+ * @author      Jim Graham
+ * @since 1.2
+ */
+public abstract class Rectangle2D extends RectangularShape {
+    /**
+     * The bitmask that indicates that a point lies to the left of
+     * this {@code Rectangle2D}.
+     * @since 1.2
+     */
+    public static final int OUT_LEFT = 1;
+
+    /**
+     * The bitmask that indicates that a point lies above
+     * this {@code Rectangle2D}.
+     * @since 1.2
+     */
+    public static final int OUT_TOP = 2;
+
+    /**
+     * The bitmask that indicates that a point lies to the right of
+     * this {@code Rectangle2D}.
+     * @since 1.2
+     */
+    public static final int OUT_RIGHT = 4;
+
+    /**
+     * The bitmask that indicates that a point lies below
+     * this {@code Rectangle2D}.
+     * @since 1.2
+     */
+    public static final int OUT_BOTTOM = 8;
+
+    /**
+     * The {@code Float} class defines a rectangle specified in float
+     * coordinates.
+     * @since 1.2
+     */
+    public static class Float extends Rectangle2D implements Serializable {
+        /**
+         * The X coordinate of this {@code Rectangle2D}.
+         * @since 1.2
+         * @serial
+         */
+        public float x;
+
+        /**
+         * The Y coordinate of this {@code Rectangle2D}.
+         * @since 1.2
+         * @serial
+         */
+        public float y;
+
+        /**
+         * The width of this {@code Rectangle2D}.
+         * @since 1.2
+         * @serial
+         */
+        public float width;
+
+        /**
+         * The height of this {@code Rectangle2D}.
+         * @since 1.2
+         * @serial
+         */
+        public float height;
+
+        /**
+         * Constructs a new {@code Rectangle2D}, initialized to
+         * location (0.0,&nbsp;0.0) and size (0.0,&nbsp;0.0).
+         * @since 1.2
+         */
+        public Float() {
+        }
+
+        /**
+         * Constructs and initializes a {@code Rectangle2D}
+         * from the specified {@code float} coordinates.
+         *
+         * @param x the X coordinate of the upper-left corner
+         *          of the newly constructed {@code Rectangle2D}
+         * @param y the Y coordinate of the upper-left corner
+         *          of the newly constructed {@code Rectangle2D}
+         * @param w the width of the newly constructed
+         *          {@code Rectangle2D}
+         * @param h the height of the newly constructed
+         *          {@code Rectangle2D}
+         * @since 1.2
+        */
+        public Float(float x, float y, float w, float h) {
+            setRect(x, y, w, h);
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public double getX() {
+            return (double) x;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public double getY() {
+            return (double) y;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public double getWidth() {
+            return (double) width;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public double getHeight() {
+            return (double) height;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public boolean isEmpty() {
+            return (width <= 0.0f) || (height <= 0.0f);
+        }
+
+        /**
+         * Sets the location and size of this {@code Rectangle2D}
+         * to the specified {@code float} values.
+         *
+         * @param x the X coordinate of the upper-left corner
+         *          of this {@code Rectangle2D}
+         * @param y the Y coordinate of the upper-left corner
+         *          of this {@code Rectangle2D}
+         * @param w the width of this {@code Rectangle2D}
+         * @param h the height of this {@code Rectangle2D}
+         * @since 1.2
+         */
+        public void setRect(float x, float y, float w, float h) {
+            this.x = x;
+            this.y = y;
+            this.width = w;
+            this.height = h;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public void setRect(double x, double y, double w, double h) {
+            this.x = (float) x;
+            this.y = (float) y;
+            this.width = (float) w;
+            this.height = (float) h;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public void setRect(Rectangle2D r) {
+            this.x = (float) r.getX();
+            this.y = (float) r.getY();
+            this.width = (float) r.getWidth();
+            this.height = (float) r.getHeight();
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public int outcode(double x, double y) {
+            /*
+             * Note on casts to double below.  If the arithmetic of
+             * x+w or y+h is done in float, then some bits may be
+             * lost if the binary exponents of x/y and w/h are not
+             * similar.  By converting to double before the addition
+             * we force the addition to be carried out in double to
+             * avoid rounding error in the comparison.
+             *
+             * See bug 4320890 for problems that this inaccuracy causes.
+             */
+            int out = 0;
+            if (this.width <= 0) {
+                out |= OUT_LEFT | OUT_RIGHT;
+            } else if (x < this.x) {
+                out |= OUT_LEFT;
+            } else if (x > this.x + (double) this.width) {
+                out |= OUT_RIGHT;
+            }
+            if (this.height <= 0) {
+                out |= OUT_TOP | OUT_BOTTOM;
+            } else if (y < this.y) {
+                out |= OUT_TOP;
+            } else if (y > this.y + (double) this.height) {
+                out |= OUT_BOTTOM;
+            }
+            return out;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public Rectangle2D getBounds2D() {
+            return new Float(x, y, width, height);
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public Rectangle2D createIntersection(Rectangle2D r) {
+            Rectangle2D dest;
+            if (r instanceof Float) {
+                dest = new Rectangle2D.Float();
+            } else {
+                dest = new Rectangle2D.Double();
+            }
+            Rectangle2D.intersect(this, r, dest);
+            return dest;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public Rectangle2D createUnion(Rectangle2D r) {
+            Rectangle2D dest;
+            if (r instanceof Float) {
+                dest = new Rectangle2D.Float();
+            } else {
+                dest = new Rectangle2D.Double();
+            }
+            Rectangle2D.union(this, r, dest);
+            return dest;
+        }
+
+        /**
+         * Returns the {@code String} representation of this
+         * {@code Rectangle2D}.
+         * @return a {@code String} representing this
+         * {@code Rectangle2D}.
+         * @since 1.2
+         */
+        public String toString() {
+            return getClass().getName()
+                + "[x=" + x +
+                ",y=" + y +
+                ",w=" + width +
+                ",h=" + height + "]";
+        }
+
+        /**
+         * Use serialVersionUID from JDK 1.6 for interoperability.
+         */
+        @Serial
+        private static final long serialVersionUID = 3798716824173675777L;
+    }
+
+    /**
+     * The {@code Double} class defines a rectangle specified in
+     * double coordinates.
+     * @since 1.2
+     */
+    public static class Double extends Rectangle2D implements Serializable {
+        /**
+         * The X coordinate of this {@code Rectangle2D}.
+         * @since 1.2
+         * @serial
+         */
+        public double x;
+
+        /**
+         * The Y coordinate of this {@code Rectangle2D}.
+         * @since 1.2
+         * @serial
+         */
+        public double y;
+
+        /**
+         * The width of this {@code Rectangle2D}.
+         * @since 1.2
+         * @serial
+         */
+        public double width;
+
+        /**
+         * The height of this {@code Rectangle2D}.
+         * @since 1.2
+         * @serial
+         */
+        public double height;
+
+        /**
+         * Constructs a new {@code Rectangle2D}, initialized to
+         * location (0,&nbsp;0) and size (0,&nbsp;0).
+         * @since 1.2
+         */
+        public Double() {
+        }
+
+        /**
+         * Constructs and initializes a {@code Rectangle2D}
+         * from the specified {@code double} coordinates.
+         *
+         * @param x the X coordinate of the upper-left corner
+         *          of the newly constructed {@code Rectangle2D}
+         * @param y the Y coordinate of the upper-left corner
+         *          of the newly constructed {@code Rectangle2D}
+         * @param w the width of the newly constructed
+         *          {@code Rectangle2D}
+         * @param h the height of the newly constructed
+         *          {@code Rectangle2D}
+         * @since 1.2
+         */
+        public Double(double x, double y, double w, double h) {
+            setRect(x, y, w, h);
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public double getX() {
+            return x;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public double getY() {
+            return y;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public double getWidth() {
+            return width;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public double getHeight() {
+            return height;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public boolean isEmpty() {
+            return (width <= 0.0) || (height <= 0.0);
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public void setRect(double x, double y, double w, double h) {
+            this.x = x;
+            this.y = y;
+            this.width = w;
+            this.height = h;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public void setRect(Rectangle2D r) {
+            this.x = r.getX();
+            this.y = r.getY();
+            this.width = r.getWidth();
+            this.height = r.getHeight();
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public int outcode(double x, double y) {
+            int out = 0;
+            if (this.width <= 0) {
+                out |= OUT_LEFT | OUT_RIGHT;
+            } else if (x < this.x) {
+                out |= OUT_LEFT;
+            } else if (x > this.x + this.width) {
+                out |= OUT_RIGHT;
+            }
+            if (this.height <= 0) {
+                out |= OUT_TOP | OUT_BOTTOM;
+            } else if (y < this.y) {
+                out |= OUT_TOP;
+            } else if (y > this.y + this.height) {
+                out |= OUT_BOTTOM;
+            }
+            return out;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public Rectangle2D getBounds2D() {
+            return new Double(x, y, width, height);
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public Rectangle2D createIntersection(Rectangle2D r) {
+            Rectangle2D dest = new Rectangle2D.Double();
+            Rectangle2D.intersect(this, r, dest);
+            return dest;
+        }
+
+        /**
+         * {@inheritDoc}
+         * @since 1.2
+         */
+        public Rectangle2D createUnion(Rectangle2D r) {
+            Rectangle2D dest = new Rectangle2D.Double();
+            Rectangle2D.union(this, r, dest);
+            return dest;
+        }
+
+        /**
+         * Returns the {@code String} representation of this
+         * {@code Rectangle2D}.
+         * @return a {@code String} representing this
+         * {@code Rectangle2D}.
+         * @since 1.2
+         */
+        public String toString() {
+            return getClass().getName()
+                + "[x=" + x +
+                ",y=" + y +
+                ",w=" + width +
+                ",h=" + height + "]";
+        }
+
+        /**
+         * Use serialVersionUID from JDK 1.6 for interoperability.
+         */
+        @Serial
+        private static final long serialVersionUID = 7771313791441850493L;
+    }
+
+    /**
+     * This is an abstract class that cannot be instantiated directly.
+     * Type-specific implementation subclasses are available for
+     * instantiation and provide a number of formats for storing
+     * the information necessary to satisfy the various accessor
+     * methods below.
+     *
+     * @see java.awt.geom.Rectangle2D.Float
+     * @see java.awt.geom.Rectangle2D.Double
+     * @see java.awt.Rectangle
+     * @since 1.2
+     */
+    protected Rectangle2D() {
+    }
+
+    /**
+     * Sets the location and size of this {@code Rectangle2D}
+     * to the specified {@code double} values.
+     *
+     * @param x the X coordinate of the upper-left corner
+     *          of this {@code Rectangle2D}
+     * @param y the Y coordinate of the upper-left corner
+     *          of this {@code Rectangle2D}
+     * @param w the width of this {@code Rectangle2D}
+     * @param h the height of this {@code Rectangle2D}
+     * @since 1.2
+     */
+    public abstract void setRect(double x, double y, double w, double h);
+
+    /**
+     * Sets this {@code Rectangle2D} to be the same as the specified
+     * {@code Rectangle2D}.
+     * @param r the specified {@code Rectangle2D}
+     * @since 1.2
+     */
+    public void setRect(Rectangle2D r) {
+        setRect(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+    }
+
+    /**
+     * Tests if the specified line segment intersects the interior of this
+     * {@code Rectangle2D}.
+     *
+     * @param x1 the X coordinate of the start point of the specified
+     *           line segment
+     * @param y1 the Y coordinate of the start point of the specified
+     *           line segment
+     * @param x2 the X coordinate of the end point of the specified
+     *           line segment
+     * @param y2 the Y coordinate of the end point of the specified
+     *           line segment
+     * @return {@code true} if the specified line segment intersects
+     * the interior of this {@code Rectangle2D}; {@code false}
+     * otherwise.
+     * @since 1.2
+     */
+    public boolean intersectsLine(double x1, double y1, double x2, double y2) {
+        int out1, out2;
+        if ((out2 = outcode(x2, y2)) == 0) {
+            return true;
+        }
+        while ((out1 = outcode(x1, y1)) != 0) {
+            if ((out1 & out2) != 0) {
+                return false;
+            }
+            if ((out1 & (OUT_LEFT | OUT_RIGHT)) != 0) {
+                double x = getX();
+                if ((out1 & OUT_RIGHT) != 0) {
+                    x += getWidth();
+                }
+                y1 = y1 + (x - x1) * (y2 - y1) / (x2 - x1);
+                x1 = x;
+            } else {
+                double y = getY();
+                if ((out1 & OUT_BOTTOM) != 0) {
+                    y += getHeight();
+                }
+                x1 = x1 + (y - y1) * (x2 - x1) / (y2 - y1);
+                y1 = y;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Tests if the specified line segment intersects the interior of this
+     * {@code Rectangle2D}.
+     * @param l the specified {@link Line2D} to test for intersection
+     * with the interior of this {@code Rectangle2D}
+     * @return {@code true} if the specified {@code Line2D}
+     * intersects the interior of this {@code Rectangle2D};
+     * {@code false} otherwise.
+     * @since 1.2
+     */
+    public boolean intersectsLine(Line2D l) {
+        return intersectsLine(l.getX1(), l.getY1(), l.getX2(), l.getY2());
+    }
+
+    /**
+     * Determines where the specified coordinates lie with respect
+     * to this {@code Rectangle2D}.
+     * This method computes a binary OR of the appropriate mask values
+     * indicating, for each side of this {@code Rectangle2D},
+     * whether or not the specified coordinates are on the same side
+     * of the edge as the rest of this {@code Rectangle2D}.
+     * @param x the specified X coordinate
+     * @param y the specified Y coordinate
+     * @return the logical OR of all appropriate out codes.
+     * @see #OUT_LEFT
+     * @see #OUT_TOP
+     * @see #OUT_RIGHT
+     * @see #OUT_BOTTOM
+     * @since 1.2
+     */
+    public abstract int outcode(double x, double y);
+
+    /**
+     * Determines where the specified {@link Point2D} lies with
+     * respect to this {@code Rectangle2D}.
+     * This method computes a binary OR of the appropriate mask values
+     * indicating, for each side of this {@code Rectangle2D},
+     * whether or not the specified {@code Point2D} is on the same
+     * side of the edge as the rest of this {@code Rectangle2D}.
+     * @param p the specified {@code Point2D}
+     * @return the logical OR of all appropriate out codes.
+     * @see #OUT_LEFT
+     * @see #OUT_TOP
+     * @see #OUT_RIGHT
+     * @see #OUT_BOTTOM
+     * @since 1.2
+     */
+    public int outcode(Point2D p) {
+        return outcode(p.getX(), p.getY());
+    }
+
+    /**
+     * Sets the location and size of the outer bounds of this
+     * {@code Rectangle2D} to the specified rectangular values.
+     *
+     * @param x the X coordinate of the upper-left corner
+     *          of this {@code Rectangle2D}
+     * @param y the Y coordinate of the upper-left corner
+     *          of this {@code Rectangle2D}
+     * @param w the width of this {@code Rectangle2D}
+     * @param h the height of this {@code Rectangle2D}
+     * @since 1.2
+     */
+    public void setFrame(double x, double y, double w, double h) {
+        setRect(x, y, w, h);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @since 1.2
+     */
+    public Rectangle2D getBounds2D() {
+        return (Rectangle2D) clone();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @since 1.2
+     */
+    public boolean contains(double x, double y) {
+        double x0 = getX();
+        double y0 = getY();
+        return (x >= x0 &&
+                y >= y0 &&
+                x < x0 + getWidth() &&
+                y < y0 + getHeight());
+    }
+
+    /**
+     * {@inheritDoc}
+     * @since 1.2
+     */
+    public boolean intersects(double x, double y, double w, double h) {
+        if (isEmpty() || w <= 0 || h <= 0) {
+            return false;
+        }
+        double x0 = getX();
+        double y0 = getY();
+        return (x + w > x0 &&
+                y + h > y0 &&
+                x < x0 + getWidth() &&
+                y < y0 + getHeight());
+    }
+
+    /**
+     * {@inheritDoc}
+     * @since 1.2
+     */
+    public boolean contains(double x, double y, double w, double h) {
+        if (isEmpty() || w <= 0 || h <= 0) {
+            return false;
+        }
+        double x0 = getX();
+        double y0 = getY();
+        return (x >= x0 &&
+                y >= y0 &&
+                (x + w) <= x0 + getWidth() &&
+                (y + h) <= y0 + getHeight());
+    }
+
+    /**
+     * Returns a new {@code Rectangle2D} object representing the
+     * intersection of this {@code Rectangle2D} with the specified
+     * {@code Rectangle2D}.
+     * @param r the {@code Rectangle2D} to be intersected with
+     * this {@code Rectangle2D}
+     * @return the largest {@code Rectangle2D} contained in both
+     *          the specified {@code Rectangle2D} and in this
+     *          {@code Rectangle2D}.
+     * @since 1.2
+     */
+    public abstract Rectangle2D createIntersection(Rectangle2D r);
+
+    /**
+     * Intersects the pair of specified source {@code Rectangle2D}
+     * objects and puts the result into the specified destination
+     * {@code Rectangle2D} object.  One of the source rectangles
+     * can also be the destination to avoid creating a third Rectangle2D
+     * object, but in this case the original points of this source
+     * rectangle will be overwritten by this method.
+     * @param src1 the first of a pair of {@code Rectangle2D}
+     * objects to be intersected with each other
+     * @param src2 the second of a pair of {@code Rectangle2D}
+     * objects to be intersected with each other
+     * @param dest the {@code Rectangle2D} that holds the
+     * results of the intersection of {@code src1} and
+     * {@code src2}
+     * @since 1.2
+     */
+    public static void intersect(Rectangle2D src1,
+                                 Rectangle2D src2,
+                                 Rectangle2D dest) {
+        double x1 = Math.max(src1.getMinX(), src2.getMinX());
+        double y1 = Math.max(src1.getMinY(), src2.getMinY());
+        double x2 = Math.min(src1.getMaxX(), src2.getMaxX());
+        double y2 = Math.min(src1.getMaxY(), src2.getMaxY());
+        dest.setFrame(x1, y1, x2-x1, y2-y1);
+    }
+
+    /**
+     * Returns a new {@code Rectangle2D} object representing the
+     * union of this {@code Rectangle2D} with the specified
+     * {@code Rectangle2D}.
+     * @param r the {@code Rectangle2D} to be combined with
+     * this {@code Rectangle2D}
+     * @return the smallest {@code Rectangle2D} containing both
+     * the specified {@code Rectangle2D} and this
+     * {@code Rectangle2D}.
+     * @since 1.2
+     */
+    public abstract Rectangle2D createUnion(Rectangle2D r);
+
+    /**
+     * Unions the pair of source {@code Rectangle2D} objects
+     * and puts the result into the specified destination
+     * {@code Rectangle2D} object.  One of the source rectangles
+     * can also be the destination to avoid creating a third Rectangle2D
+     * object, but in this case the original points of this source
+     * rectangle will be overwritten by this method.
+     * @param src1 the first of a pair of {@code Rectangle2D}
+     * objects to be combined with each other
+     * @param src2 the second of a pair of {@code Rectangle2D}
+     * objects to be combined with each other
+     * @param dest the {@code Rectangle2D} that holds the
+     * results of the union of {@code src1} and
+     * {@code src2}
+     * @since 1.2
+     */
+    public static void union(Rectangle2D src1,
+                             Rectangle2D src2,
+                             Rectangle2D dest) {
+        double x1 = Math.min(src1.getMinX(), src2.getMinX());
+        double y1 = Math.min(src1.getMinY(), src2.getMinY());
+        double x2 = Math.max(src1.getMaxX(), src2.getMaxX());
+        double y2 = Math.max(src1.getMaxY(), src2.getMaxY());
+        dest.setFrameFromDiagonal(x1, y1, x2, y2);
+    }
+
+    /**
+     * Adds a point, specified by the double precision arguments
+     * {@code newx} and {@code newy}, to this
+     * {@code Rectangle2D}.  The resulting {@code Rectangle2D}
+     * is the smallest {@code Rectangle2D} that
+     * contains both the original {@code Rectangle2D} and the
+     * specified point.
+     * <p>
+     * After adding a point, a call to {@code contains} with the
+     * added point as an argument does not necessarily return
+     * {@code true}. The {@code contains} method does not
+     * return {@code true} for points on the right or bottom
+     * edges of a rectangle. Therefore, if the added point falls on
+     * the right or bottom edge of the enlarged rectangle,
+     * {@code contains} returns {@code false} for that point.
+     * @param newx the X coordinate of the new point
+     * @param newy the Y coordinate of the new point
+     * @since 1.2
+     */
+    public void add(double newx, double newy) {
+        double x1 = Math.min(getMinX(), newx);
+        double x2 = Math.max(getMaxX(), newx);
+        double y1 = Math.min(getMinY(), newy);
+        double y2 = Math.max(getMaxY(), newy);
+        setRect(x1, y1, x2 - x1, y2 - y1);
+    }
+
+    /**
+     * Adds the {@code Point2D} object {@code pt} to this
+     * {@code Rectangle2D}.
+     * The resulting {@code Rectangle2D} is the smallest
+     * {@code Rectangle2D} that contains both the original
+     * {@code Rectangle2D} and the specified {@code Point2D}.
+     * <p>
+     * After adding a point, a call to {@code contains} with the
+     * added point as an argument does not necessarily return
+     * {@code true}. The {@code contains}
+     * method does not return {@code true} for points on the right
+     * or bottom edges of a rectangle. Therefore, if the added point falls
+     * on the right or bottom edge of the enlarged rectangle,
+     * {@code contains} returns {@code false} for that point.
+     * @param     pt the new {@code Point2D} to add to this
+     * {@code Rectangle2D}.
+     * @since 1.2
+     */
+    public void add(Point2D pt) {
+        add(pt.getX(), pt.getY());
+    }
+
+    /**
+     * Adds a {@code Rectangle2D} object to this
+     * {@code Rectangle2D}.  The resulting {@code Rectangle2D}
+     * is the union of the two {@code Rectangle2D} objects.
+     * @param r the {@code Rectangle2D} to add to this
+     * {@code Rectangle2D}.
+     * @since 1.2
+     */
+    public void add(Rectangle2D r) {
+        double x1 = Math.min(getMinX(), r.getMinX());
+        double x2 = Math.max(getMaxX(), r.getMaxX());
+        double y1 = Math.min(getMinY(), r.getMinY());
+        double y2 = Math.max(getMaxY(), r.getMaxY());
+        setRect(x1, y1, x2 - x1, y2 - y1);
+    }
+
+    /**
+     * Returns an iteration object that defines the boundary of this
+     * {@code Rectangle2D}.
+     * The iterator for this class is multi-threaded safe, which means
+     * that this {@code Rectangle2D} class guarantees that
+     * modifications to the geometry of this {@code Rectangle2D}
+     * object do not affect any iterations of that geometry that
+     * are already in process.
+     * @param at an optional {@code AffineTransform} to be applied to
+     * the coordinates as they are returned in the iteration, or
+     * {@code null} if untransformed coordinates are desired
+     * @return    the {@code PathIterator} object that returns the
+     *          geometry of the outline of this
+     *          {@code Rectangle2D}, one segment at a time.
+     * @since 1.2
+     */
+    public PathIterator getPathIterator(AffineTransform at) {
+        return new RectIterator(this, at);
+    }
+
+    /**
+     * Returns an iteration object that defines the boundary of the
+     * flattened {@code Rectangle2D}.  Since rectangles are already
+     * flat, the {@code flatness} parameter is ignored.
+     * The iterator for this class is multi-threaded safe, which means
+     * that this {@code Rectangle2D} class guarantees that
+     * modifications to the geometry of this {@code Rectangle2D}
+     * object do not affect any iterations of that geometry that
+     * are already in process.
+     * @param at an optional {@code AffineTransform} to be applied to
+     * the coordinates as they are returned in the iteration, or
+     * {@code null} if untransformed coordinates are desired
+     * @param flatness the maximum distance that the line segments used to
+     * approximate the curved segments are allowed to deviate from any
+     * point on the original curve.  Since rectangles are already flat,
+     * the {@code flatness} parameter is ignored.
+     * @return    the {@code PathIterator} object that returns the
+     *          geometry of the outline of this
+     *          {@code Rectangle2D}, one segment at a time.
+     * @since 1.2
+     */
+    public PathIterator getPathIterator(AffineTransform at, double flatness) {
+        return new RectIterator(this, at);
+    }
+
+    /**
+     * Returns the hashcode for this {@code Rectangle2D}.
+     * @return the hashcode for this {@code Rectangle2D}.
+     * @since 1.2
+     */
+    public int hashCode() {
+        long bits = java.lang.Double.doubleToLongBits(getX());
+        bits += java.lang.Double.doubleToLongBits(getY()) * 37;
+        bits += java.lang.Double.doubleToLongBits(getWidth()) * 43;
+        bits += java.lang.Double.doubleToLongBits(getHeight()) * 47;
+        return (((int) bits) ^ ((int) (bits >> 32)));
+    }
+
+    /**
+     * Determines whether or not the specified {@code Object} is
+     * equal to this {@code Rectangle2D}.  The specified
+     * {@code Object} is equal to this {@code Rectangle2D}
+     * if it is an instance of {@code Rectangle2D} and if its
+     * location and size are the same as this {@code Rectangle2D}.
+     * @param obj an {@code Object} to be compared with this
+     * {@code Rectangle2D}.
+     * @return     {@code true} if {@code obj} is an instance
+     *                     of {@code Rectangle2D} and has
+     *                     the same values; {@code false} otherwise.
+     * @since 1.2
+     */
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof Rectangle2D) {
+            Rectangle2D r2d = (Rectangle2D) obj;
+            return ((getX() == r2d.getX()) &&
+                    (getY() == r2d.getY()) &&
+                    (getWidth() == r2d.getWidth()) &&
+                    (getHeight() == r2d.getHeight()));
+        }
+        return false;
+    }
+}
+package sm.image;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
+import java.lang.Object;
+import java.util.Iterator;
+
+public class BufferedImagePixelIterator extends Object implements Iterator<BufferedImagePixelIterator.PixelData> {
+
+    public class PixelData extends Object {
+
+        public int row;
+        public int col;
+        public int numSamples;
+        public int[] sample;
+
+        public PixelData(int row, int col, int[] sample) {
+            // compiled code
+        }
+    }
+    private final Raster raster;
+    private final int numRows;
+    private final int numCols;
+    private final int length;
+    private int cont;
+    private final int[] pixelComp;
+
+    public BufferedImagePixelIterator(BufferedImage img) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         * 4: aload_0
+         * 5: iconst_0
+         * 6: putfield      #2                  // Field cont:I
+         * 9: aload_0
+         * 10: aconst_null
+         * 11: putfield      #3                  // Field pixelComp:[I
+         * 14: aload_0
+         * 15: aload_1
+         * 16: invokevirtual #4                  // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 19: putfield      #5                  // Field raster:Ljava/awt/image/Raster;
+         * 22: aload_0
+         * 23: aload_0
+         * 24: getfield      #5                  // Field raster:Ljava/awt/image/Raster;
+         * 27: invokevirtual #6                  // Method java/awt/image/Raster.getHeight:()I
+         * 30: putfield      #7                  // Field numRows:I
+         * 33: aload_0
+         * 34: aload_0
+         * 35: getfield      #5                  // Field raster:Ljava/awt/image/Raster;
+         * 38: invokevirtual #8                  // Method java/awt/image/Raster.getWidth:()I
+         * 41: putfield      #9                  // Field numCols:I
+         * 44: aload_0
+         * 45: aload_0
+         * 46: getfield      #7                  // Field numRows:I
+         * 49: aload_0
+         * 50: getfield      #9                  // Field numCols:I
+         * 53: imul
+         * 54: putfield      #10                 // Field length:I
+         * 57: return
+         *  */
+        // </editor-fold>
+    }
+
+    public boolean hasNext() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #2                  // Field cont:I
+         * 4: aload_0
+         * 5: getfield      #10                 // Field length:I
+         * 8: if_icmpge     15
+         * 11: iconst_1
+         * 12: goto          16
+         * 15: iconst_0
+         * 16: ireturn
+         *  */
+        // </editor-fold>
+    }
+
+    public PixelData next() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #2                  // Field cont:I
+         * 4: aload_0
+         * 5: getfield      #10                 // Field length:I
+         * 8: if_icmplt     21
+         * 11: new           #11                 // class java/util/NoSuchElementException
+         * 14: dup
+         * 15: ldc           #12                 // String No more samples
+         * 17: invokespecial #13                 // Method java/util/NoSuchElementException."<init>":(Ljava/lang/String;)V
+         * 20: athrow
+         * 21: aload_0
+         * 22: getfield      #2                  // Field cont:I
+         * 25: aload_0
+         * 26: getfield      #9                  // Field numCols:I
+         * 29: idiv
+         * 30: istore_1
+         * 31: aload_0
+         * 32: getfield      #2                  // Field cont:I
+         * 35: aload_0
+         * 36: getfield      #9                  // Field numCols:I
+         * 39: irem
+         * 40: istore_2
+         * 41: aload_0
+         * 42: dup
+         * 43: getfield      #2                  // Field cont:I
+         * 46: iconst_1
+         * 47: iadd
+         * 48: putfield      #2                  // Field cont:I
+         * 51: new           #14                 // class sm/image/BufferedImagePixelIterator$PixelData
+         * 54: dup
+         * 55: aload_0
+         * 56: iload_1
+         * 57: iload_2
+         * 58: aload_0
+         * 59: getfield      #5                  // Field raster:Ljava/awt/image/Raster;
+         * 62: iload_2
+         * 63: iload_1
+         * 64: aload_0
+         * 65: getfield      #3                  // Field pixelComp:[I
+         * 68: invokevirtual #15                 // Method java/awt/image/Raster.getPixel:(II[I)[I
+         * 71: invokespecial #16                 // Method sm/image/BufferedImagePixelIterator$PixelData."<init>":(Lsm/image/BufferedImagePixelIterator;II[I)V
+         * 74: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public void remove() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: new           #17                 // class java/lang/UnsupportedOperationException
+         * 3: dup
+         * 4: ldc           #18                 // String Remove operation not supported
+         * 6: invokespecial #19                 // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+         * 9: athrow
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
+import java.lang.Object;
+import java.util.Iterator;
+
+public class BufferedImageSampleIterator extends Object implements Iterator<BufferedImageSampleIterator.SampleData> {
+
+    public class SampleData extends Object {
+
+        public int row;
+        public int col;
+        public int band;
+        public int value;
+
+        public SampleData(int row, int col, int band, int value) {
+            // compiled code
+        }
+    }
+    private final Raster raster;
+    private final int numRows;
+    private final int numCols;
+    private final int numBands;
+    private final int length;
+    private int cont;
+
+    public BufferedImageSampleIterator(BufferedImage img) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         * 4: aload_0
+         * 5: iconst_0
+         * 6: putfield      #2                  // Field cont:I
+         * 9: aload_0
+         * 10: aload_1
+         * 11: invokevirtual #3                  // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 14: putfield      #4                  // Field raster:Ljava/awt/image/Raster;
+         * 17: aload_0
+         * 18: aload_0
+         * 19: getfield      #4                  // Field raster:Ljava/awt/image/Raster;
+         * 22: invokevirtual #5                  // Method java/awt/image/Raster.getHeight:()I
+         * 25: putfield      #6                  // Field numRows:I
+         * 28: aload_0
+         * 29: aload_0
+         * 30: getfield      #4                  // Field raster:Ljava/awt/image/Raster;
+         * 33: invokevirtual #7                  // Method java/awt/image/Raster.getWidth:()I
+         * 36: putfield      #8                  // Field numCols:I
+         * 39: aload_0
+         * 40: aload_0
+         * 41: getfield      #4                  // Field raster:Ljava/awt/image/Raster;
+         * 44: invokevirtual #9                  // Method java/awt/image/Raster.getNumBands:()I
+         * 47: putfield      #10                 // Field numBands:I
+         * 50: aload_0
+         * 51: aload_0
+         * 52: getfield      #6                  // Field numRows:I
+         * 55: aload_0
+         * 56: getfield      #8                  // Field numCols:I
+         * 59: imul
+         * 60: aload_0
+         * 61: getfield      #10                 // Field numBands:I
+         * 64: imul
+         * 65: putfield      #11                 // Field length:I
+         * 68: return
+         *  */
+        // </editor-fold>
+    }
+
+    public boolean hasNext() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #2                  // Field cont:I
+         * 4: aload_0
+         * 5: getfield      #11                 // Field length:I
+         * 8: if_icmpge     15
+         * 11: iconst_1
+         * 12: goto          16
+         * 15: iconst_0
+         * 16: ireturn
+         *  */
+        // </editor-fold>
+    }
+
+    public SampleData next() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #2                  // Field cont:I
+         * 4: aload_0
+         * 5: getfield      #11                 // Field length:I
+         * 8: if_icmplt     21
+         * 11: new           #12                 // class java/util/NoSuchElementException
+         * 14: dup
+         * 15: ldc           #13                 // String No more samples
+         * 17: invokespecial #14                 // Method java/util/NoSuchElementException."<init>":(Ljava/lang/String;)V
+         * 20: athrow
+         * 21: aload_0
+         * 22: getfield      #2                  // Field cont:I
+         * 25: aload_0
+         * 26: getfield      #8                  // Field numCols:I
+         * 29: aload_0
+         * 30: getfield      #10                 // Field numBands:I
+         * 33: imul
+         * 34: idiv
+         * 35: istore_1
+         * 36: aload_0
+         * 37: getfield      #2                  // Field cont:I
+         * 40: aload_0
+         * 41: getfield      #10                 // Field numBands:I
+         * 44: idiv
+         * 45: aload_0
+         * 46: getfield      #8                  // Field numCols:I
+         * 49: irem
+         * 50: istore_2
+         * 51: aload_0
+         * 52: getfield      #2                  // Field cont:I
+         * 55: aload_0
+         * 56: getfield      #10                 // Field numBands:I
+         * 59: irem
+         * 60: istore_3
+         * 61: aload_0
+         * 62: dup
+         * 63: getfield      #2                  // Field cont:I
+         * 66: iconst_1
+         * 67: iadd
+         * 68: putfield      #2                  // Field cont:I
+         * 71: new           #15                 // class sm/image/BufferedImageSampleIterator$SampleData
+         * 74: dup
+         * 75: aload_0
+         * 76: iload_1
+         * 77: iload_2
+         * 78: iload_3
+         * 79: aload_0
+         * 80: getfield      #4                  // Field raster:Ljava/awt/image/Raster;
+         * 83: iload_2
+         * 84: iload_1
+         * 85: iload_3
+         * 86: invokevirtual #16                 // Method java/awt/image/Raster.getSample:(III)I
+         * 89: invokespecial #17                 // Method sm/image/BufferedImageSampleIterator$SampleData."<init>":(Lsm/image/BufferedImageSampleIterator;IIII)V
+         * 92: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public void remove() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: new           #18                 // class java/lang/UnsupportedOperationException
+         * 3: dup
+         * 4: ldc           #19                 // String Remove operation not supported
+         * 6: invokespecial #20                 // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+         * 9: athrow
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.BufferedImage;
+
+public class EqualizationOp extends BufferedImageOpAdapter {
+
+    private final int ALL_BANDS = -1;
+    private int bandOp;
+
+    public EqualizationOp() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method sm/image/BufferedImageOpAdapter."<init>":()V
+         * 4: aload_0
+         * 5: iconst_m1
+         * 6: putfield      #2                  // Field ALL_BANDS:I
+         * 9: aload_0
+         * 10: iconst_m1
+         * 11: putfield      #4                  // Field bandOp:I
+         * 14: return
+         *  */
+        // </editor-fold>
+    }
+
+    public EqualizationOp(int bandOp) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method sm/image/BufferedImageOpAdapter."<init>":()V
+         * 4: aload_0
+         * 5: iconst_m1
+         * 6: putfield      #2                  // Field ALL_BANDS:I
+         * 9: aload_0
+         * 10: iload_1
+         * 11: invokevirtual #5                  // Method setBand:(I)V
+         * 14: return
+         *  */
+        // </editor-fold>
+    }
+
+    public BufferedImage filter(BufferedImage src, BufferedImage dest) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: ifnonnull     14
+         * 4: new           #6                  // class java/lang/NullPointerException
+         * 7: dup
+         * 8: ldc           #7                  // String src image is null
+         * 10: invokespecial #8                  // Method java/lang/NullPointerException."<init>":(Ljava/lang/String;)V
+         * 13: athrow
+         * 14: aload_0
+         * 15: getfield      #4                  // Field bandOp:I
+         * 18: aload_1
+         * 19: invokevirtual #9                  // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 22: invokevirtual #10                 // Method java/awt/image/WritableRaster.getNumBands:()I
+         * 25: if_icmplt     38
+         * 28: new           #11                 // class java/lang/IndexOutOfBoundsException
+         * 31: dup
+         * 32: ldc           #12                 // String Band index out of bounds
+         * 34: invokespecial #13                 // Method java/lang/IndexOutOfBoundsException."<init>":(Ljava/lang/String;)V
+         * 37: athrow
+         * 38: aload_2
+         * 39: ifnonnull     49
+         * 42: aload_0
+         * 43: aload_1
+         * 44: aconst_null
+         * 45: invokevirtual #14                 // Method createCompatibleDestImage:(Ljava/awt/image/BufferedImage;Ljava/awt/image/ColorModel;)Ljava/awt/image/BufferedImage;
+         * 48: astore_2
+         * 49: aload_1
+         * 50: invokevirtual #15                 // Method java/awt/image/BufferedImage.getColorModel:()Ljava/awt/image/ColorModel;
+         * 53: invokevirtual #16                 // Method java/awt/image/ColorModel.hasAlpha:()Z
+         * 56: istore_3
+         * 57: new           #17                 // class sm/image/Histogram
+         * 60: dup
+         * 61: aload_1
+         * 62: invokespecial #18                 // Method sm/image/Histogram."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 65: astore        4
+         * 67: aload         4
+         * 69: invokevirtual #19                 // Method sm/image/Histogram.getCumulativeHistogram:()[[D
+         * 72: astore        5
+         * 74: aload         4
+         * 76: invokevirtual #20                 // Method sm/image/Histogram.getNumBands:()I
+         * 79: aload         4
+         * 81: invokevirtual #21                 // Method sm/image/Histogram.getNumBins:()I
+         * 84: multianewarray #22,  2            // class "[[S"
+         * 88: astore        6
+         * 90: aload         4
+         * 92: invokevirtual #21                 // Method sm/image/Histogram.getNumBins:()I
+         * 95: iconst_1
+         * 96: isub
+         * 97: i2d
+         * 98: dstore        7
+         * 100: iconst_0
+         * 101: istore        9
+         * 103: iload         9
+         * 105: aload         5
+         * 107: arraylength
+         * 108: if_icmpge     247
+         * 111: iconst_0
+         * 112: istore        10
+         * 114: iload         10
+         * 116: aload         5
+         * 118: iload         9
+         * 120: aaload
+         * 121: arraylength
+         * 122: if_icmpge     241
+         * 125: aload_0
+         * 126: getfield      #4                  // Field bandOp:I
+         * 129: iconst_m1
+         * 130: if_icmpne     188
+         * 133: iload_3
+         * 134: ifeq          161
+         * 137: iload         9
+         * 139: aload         5
+         * 141: arraylength
+         * 142: iconst_1
+         * 143: isub
+         * 144: if_icmpne     161
+         * 147: aload         6
+         * 149: iload         9
+         * 151: aaload
+         * 152: iload         10
+         * 154: iload         10
+         * 156: i2s
+         * 157: sastore
+         * 158: goto          235
+         * 161: aload         6
+         * 163: iload         9
+         * 165: aaload
+         * 166: iload         10
+         * 168: aload         5
+         * 170: iload         9
+         * 172: aaload
+         * 173: iload         10
+         * 175: daload
+         * 176: dload         7
+         * 178: dmul
+         * 179: invokestatic  #23                 // Method java/lang/Math.floor:(D)D
+         * 182: d2i
+         * 183: i2s
+         * 184: sastore
+         * 185: goto          235
+         * 188: iload         9
+         * 190: aload_0
+         * 191: getfield      #4                  // Field bandOp:I
+         * 194: if_icmpne     224
+         * 197: aload         6
+         * 199: iload         9
+         * 201: aaload
+         * 202: iload         10
+         * 204: aload         5
+         * 206: iload         9
+         * 208: aaload
+         * 209: iload         10
+         * 211: daload
+         * 212: dload         7
+         * 214: dmul
+         * 215: invokestatic  #23                 // Method java/lang/Math.floor:(D)D
+         * 218: d2i
+         * 219: i2s
+         * 220: sastore
+         * 221: goto          235
+         * 224: aload         6
+         * 226: iload         9
+         * 228: aaload
+         * 229: iload         10
+         * 231: iload         10
+         * 233: i2s
+         * 234: sastore
+         * 235: iinc          10, 1
+         * 238: goto          114
+         * 241: iinc          9, 1
+         * 244: goto          103
+         * 247: new           #24                 // class java/awt/image/ShortLookupTable
+         * 250: dup
+         * 251: iconst_0
+         * 252: aload         6
+         * 254: invokespecial #25                 // Method java/awt/image/ShortLookupTable."<init>":(I[[S)V
+         * 257: astore        9
+         * 259: new           #26                 // class java/awt/image/LookupOp
+         * 262: dup
+         * 263: aload         9
+         * 265: aconst_null
+         * 266: invokespecial #27                 // Method java/awt/image/LookupOp."<init>":(Ljava/awt/image/LookupTable;Ljava/awt/RenderingHints;)V
+         * 269: astore        10
+         * 271: aload         10
+         * 273: aload_1
+         * 274: aload_2
+         * 275: invokevirtual #28                 // Method java/awt/image/LookupOp.filter:(Ljava/awt/image/BufferedImage;Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
+         * 278: pop
+         * 279: aload_2
+         * 280: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public final void setBand(int band) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_1
+         * 1: ifge          14
+         * 4: new           #29                 // class java/lang/IllegalArgumentException
+         * 7: dup
+         * 8: ldc           #30                 // String Band index must be positive
+         * 10: invokespecial #31                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+         * 13: athrow
+         * 14: aload_0
+         * 15: iload_1
+         * 16: putfield      #4                  // Field bandOp:I
+         * 19: return
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.BufferedImage;
+import java.lang.Object;
+
+public class Histogram extends Object {
+
+    private final int[][] h;
+    private final int numBands;
+    private final int maxSampleValue;
+    private final int numSamplesBand;
+
+    public Histogram(BufferedImage img) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         * 4: aload_1
+         * 5: ifnonnull     18
+         * 8: new           #2                  // class java/lang/IllegalArgumentException
+         * 11: dup
+         * 12: ldc           #3                  // String Image cannot be null
+         * 14: invokespecial #4                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+         * 17: athrow
+         * 18: aload_0
+         * 19: aload_1
+         * 20: invokevirtual #5                  // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 23: invokevirtual #6                  // Method java/awt/image/WritableRaster.getNumBands:()I
+         * 26: putfield      #7                  // Field numBands:I
+         * 29: aload_0
+         * 30: ldc2_w        #8                  // double 2.0d
+         * 33: aload_1
+         * 34: invokevirtual #10                 // Method java/awt/image/BufferedImage.getSampleModel:()Ljava/awt/image/SampleModel;
+         * 37: iconst_0
+         * 38: invokevirtual #11                 // Method java/awt/image/SampleModel.getSampleSize:(I)I
+         * 41: i2d
+         * 42: invokestatic  #12                 // Method java/lang/Math.pow:(DD)D
+         * 45: d2i
+         * 46: iconst_1
+         * 47: isub
+         * 48: putfield      #13                 // Field maxSampleValue:I
+         * 51: aload_0
+         * 52: aload_0
+         * 53: getfield      #7                  // Field numBands:I
+         * 56: aload_0
+         * 57: getfield      #13                 // Field maxSampleValue:I
+         * 60: iconst_1
+         * 61: iadd
+         * 62: multianewarray #14,  2            // class "[[I"
+         * 66: putfield      #15                 // Field h:[[I
+         * 69: aload_0
+         * 70: aload_1
+         * 71: invokevirtual #16                 // Method java/awt/image/BufferedImage.getWidth:()I
+         * 74: aload_1
+         * 75: invokevirtual #17                 // Method java/awt/image/BufferedImage.getHeight:()I
+         * 78: imul
+         * 79: putfield      #18                 // Field numSamplesBand:I
+         * 82: new           #19                 // class sm/image/BufferedImageSampleIterator
+         * 85: dup
+         * 86: aload_1
+         * 87: invokespecial #20                 // Method sm/image/BufferedImageSampleIterator."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 90: astore_2
+         * 91: aload_2
+         * 92: invokevirtual #21                 // Method sm/image/BufferedImageSampleIterator.hasNext:()Z
+         * 95: ifeq          124
+         * 98: aload_2
+         * 99: invokevirtual #22                 // Method sm/image/BufferedImageSampleIterator.next:()Lsm/image/BufferedImageSampleIterator$SampleData;
+         * 102: astore_3
+         * 103: aload_0
+         * 104: getfield      #15                 // Field h:[[I
+         * 107: aload_3
+         * 108: getfield      #23                 // Field sm/image/BufferedImageSampleIterator$SampleData.band:I
+         * 111: aaload
+         * 112: aload_3
+         * 113: getfield      #24                 // Field sm/image/BufferedImageSampleIterator$SampleData.value:I
+         * 116: dup2
+         * 117: iaload
+         * 118: iconst_1
+         * 119: iadd
+         * 120: iastore
+         * 121: goto          91
+         * 124: return
+         *  */
+        // </editor-fold>
+    }
+
+    public int getValue(int bin, int band) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #15                 // Field h:[[I
+         * 4: iload_2
+         * 5: aaload
+         * 6: iload_1
+         * 7: iaload
+         * 8: ireturn
+         *  */
+        // </editor-fold>
+    }
+
+    public int getNumBins() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #13                 // Field maxSampleValue:I
+         * 4: iconst_1
+         * 5: iadd
+         * 6: ireturn
+         *  */
+        // </editor-fold>
+    }
+
+    public int getNumBands() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #7                  // Field numBands:I
+         * 4: ireturn
+         *  */
+        // </editor-fold>
+    }
+
+    public int[][] getConts() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #15                 // Field h:[[I
+         * 4: invokevirtual #25                 // Method "[[I".clone:()Ljava/lang/Object;
+         * 7: checkcast     #14                 // class "[[I"
+         * 10: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public int[] getConts(int band) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_1
+         * 1: aload_0
+         * 2: getfield      #7                  // Field numBands:I
+         * 5: if_icmplt     18
+         * 8: new           #2                  // class java/lang/IllegalArgumentException
+         * 11: dup
+         * 12: ldc           #26                 // String Band index out of bounds
+         * 14: invokespecial #4                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+         * 17: athrow
+         * 18: aload_0
+         * 19: getfield      #15                 // Field h:[[I
+         * 22: iload_1
+         * 23: aaload
+         * 24: invokevirtual #27                 // Method "[I".clone:()Ljava/lang/Object;
+         * 27: checkcast     #28                 // class "[I"
+         * 30: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public double[][] getNormalizedHistogram() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #7                  // Field numBands:I
+         * 4: aload_0
+         * 5: getfield      #13                 // Field maxSampleValue:I
+         * 8: iconst_1
+         * 9: iadd
+         * 10: multianewarray #29,  2            // class "[[D"
+         * 14: astore_1
+         * 15: iconst_0
+         * 16: istore_2
+         * 17: iload_2
+         * 18: aload_0
+         * 19: getfield      #15                 // Field h:[[I
+         * 22: arraylength
+         * 23: if_icmpge     71
+         * 26: iconst_0
+         * 27: istore_3
+         * 28: iload_3
+         * 29: aload_0
+         * 30: getfield      #15                 // Field h:[[I
+         * 33: iload_2
+         * 34: aaload
+         * 35: arraylength
+         * 36: if_icmpge     65
+         * 39: aload_1
+         * 40: iload_2
+         * 41: aaload
+         * 42: iload_3
+         * 43: aload_0
+         * 44: getfield      #15                 // Field h:[[I
+         * 47: iload_2
+         * 48: aaload
+         * 49: iload_3
+         * 50: iaload
+         * 51: i2d
+         * 52: aload_0
+         * 53: getfield      #18                 // Field numSamplesBand:I
+         * 56: i2d
+         * 57: ddiv
+         * 58: dastore
+         * 59: iinc          3, 1
+         * 62: goto          28
+         * 65: iinc          2, 1
+         * 68: goto          17
+         * 71: aload_1
+         * 72: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public double[] getNormalizedHistogram(int band) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_1
+         * 1: aload_0
+         * 2: getfield      #7                  // Field numBands:I
+         * 5: if_icmplt     18
+         * 8: new           #2                  // class java/lang/IllegalArgumentException
+         * 11: dup
+         * 12: ldc           #26                 // String Band index out of bounds
+         * 14: invokespecial #4                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+         * 17: athrow
+         * 18: aload_0
+         * 19: getfield      #13                 // Field maxSampleValue:I
+         * 22: iconst_1
+         * 23: iadd
+         * 24: newarray       double
+         * 26: astore_2
+         * 27: iconst_0
+         * 28: istore_3
+         * 29: iload_3
+         * 30: aload_0
+         * 31: getfield      #15                 // Field h:[[I
+         * 34: iload_1
+         * 35: aaload
+         * 36: arraylength
+         * 37: if_icmpge     64
+         * 40: aload_2
+         * 41: iload_3
+         * 42: aload_0
+         * 43: getfield      #15                 // Field h:[[I
+         * 46: iload_1
+         * 47: aaload
+         * 48: iload_3
+         * 49: iaload
+         * 50: i2d
+         * 51: aload_0
+         * 52: getfield      #18                 // Field numSamplesBand:I
+         * 55: i2d
+         * 56: ddiv
+         * 57: dastore
+         * 58: iinc          3, 1
+         * 61: goto          29
+         * 64: aload_2
+         * 65: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public double[][] getCumulativeHistogram() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokevirtual #30                 // Method getNormalizedHistogram:()[[D
+         * 4: astore_1
+         * 5: iconst_0
+         * 6: istore_2
+         * 7: iload_2
+         * 8: aload_1
+         * 9: arraylength
+         * 10: if_icmpge     53
+         * 13: iconst_1
+         * 14: istore_3
+         * 15: iload_3
+         * 16: aload_1
+         * 17: iload_2
+         * 18: aaload
+         * 19: arraylength
+         * 20: if_icmpge     47
+         * 23: aload_1
+         * 24: iload_2
+         * 25: aaload
+         * 26: iload_3
+         * 27: aload_1
+         * 28: iload_2
+         * 29: aaload
+         * 30: iload_3
+         * 31: iconst_1
+         * 32: isub
+         * 33: daload
+         * 34: aload_1
+         * 35: iload_2
+         * 36: aaload
+         * 37: iload_3
+         * 38: daload
+         * 39: dadd
+         * 40: dastore
+         * 41: iinc          3, 1
+         * 44: goto          15
+         * 47: iinc          2, 1
+         * 50: goto          7
+         * 53: aload_1
+         * 54: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public double[] getCumulativeHistogram(int band) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_1
+         * 1: aload_0
+         * 2: getfield      #7                  // Field numBands:I
+         * 5: if_icmplt     18
+         * 8: new           #2                  // class java/lang/IllegalArgumentException
+         * 11: dup
+         * 12: ldc           #26                 // String Band index out of bounds
+         * 14: invokespecial #4                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+         * 17: athrow
+         * 18: aload_0
+         * 19: iload_1
+         * 20: invokevirtual #31                 // Method getNormalizedHistogram:(I)[D
+         * 23: astore_2
+         * 24: iconst_1
+         * 25: istore_3
+         * 26: iload_3
+         * 27: aload_2
+         * 28: arraylength
+         * 29: if_icmpge     50
+         * 32: aload_2
+         * 33: iload_3
+         * 34: aload_2
+         * 35: iload_3
+         * 36: iconst_1
+         * 37: isub
+         * 38: daload
+         * 39: aload_2
+         * 40: iload_3
+         * 41: daload
+         * 42: dadd
+         * 43: dastore
+         * 44: iinc          3, 1
+         * 47: goto          26
+         * 50: aload_2
+         * 51: areturn
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.BufferedImage;
+
+public class ImageTools {
+
+    public ImageTools() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         * 4: return
+         *  */
+        // </editor-fold>
+    }
+
+    public static int clampRange(int value, int min, int max) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_0
+         * 1: iload_1
+         * 2: if_icmpgt     7
+         * 5: iload_1
+         * 6: ireturn
+         * 7: iload_0
+         * 8: iload_2
+         * 9: if_icmplt     14
+         * 12: iload_2
+         * 13: ireturn
+         * 14: iload_0
+         * 15: ireturn
+         *  */
+        // </editor-fold>
+    }
+
+    public static BufferedImage convertImageType(BufferedImage img, int type) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: ifnonnull     6
+         * 4: aconst_null
+         * 5: areturn
+         * 6: new           #2                  // class java/awt/image/BufferedImage
+         * 9: dup
+         * 10: aload_0
+         * 11: invokevirtual #3                  // Method java/awt/image/BufferedImage.getWidth:()I
+         * 14: aload_0
+         * 15: invokevirtual #4                  // Method java/awt/image/BufferedImage.getHeight:()I
+         * 18: iload_1
+         * 19: invokespecial #5                  // Method java/awt/image/BufferedImage."<init>":(III)V
+         * 22: astore_2
+         * 23: aload_2
+         * 24: invokevirtual #6                  // Method java/awt/image/BufferedImage.createGraphics:()Ljava/awt/Graphics2D;
+         * 27: astore_3
+         * 28: aload_3
+         * 29: aload_0
+         * 30: iconst_0
+         * 31: iconst_0
+         * 32: aconst_null
+         * 33: invokevirtual #7                  // Method java/awt/Graphics2D.drawImage:(Ljava/awt/Image;IILjava/awt/image/ImageObserver;)Z
+         * 36: pop
+         * 37: aload_2
+         * 38: areturn
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.Kernel;
+
+public class KernelProducer {
+
+    public static final int TYPE_MEDIA_3x3 = 0;
+    public static final int TYPE_BINOMIAL_3x3 = 1;
+    public static final int TYPE_ENFOQUE_3x3 = 2;
+    public static final int TYPE_RELIEVE_3x3 = 3;
+    public static final int TYPE_LAPLACIANA_3x3 = 4;
+    public static final int TYPE_SOBELX_3x3 = 5;
+    public static final int TYPE_SOBELY_3x3 = 6;
+    public static float[] MASCARA_MEDIA_3x3;
+    public static float[] MASCARA_BINOMIAL_3x3;
+    public static float[] MASCARA_ENFOQUE_3x3;
+    public static float[] MASCARA_LAPLACIANA_3x3;
+    public static float[] MASCARA_RELIEVE_3x3;
+    public static float[] MASCARA_SOBELX_3x3;
+    public static float[] MASCARA_SOBELY_3x3;
+    public static float[] MASCARA_ENFOQUEINTENSO_3x3;
+
+    public static Kernel createKernel(int type) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_0
+         * 1: tableswitch   { // 0 to 6
+         * 0: 44
+         * 1: 57
+         * 2: 70
+         * 3: 83
+         * 4: 96
+         * 5: 109
+         * 6: 122
+         * default: 135
+         * }
+         * 44: new           #1                  // class java/awt/image/Kernel
+         * 47: dup
+         * 48: iconst_3
+         * 49: iconst_3
+         * 50: getstatic     #2                  // Field MASCARA_MEDIA_3x3:[F
+         * 53: invokespecial #3                  // Method java/awt/image/Kernel."<init>":(II[F)V
+         * 56: areturn
+         * 57: new           #1                  // class java/awt/image/Kernel
+         * 60: dup
+         * 61: iconst_3
+         * 62: iconst_3
+         * 63: getstatic     #4                  // Field MASCARA_BINOMIAL_3x3:[F
+         * 66: invokespecial #3                  // Method java/awt/image/Kernel."<init>":(II[F)V
+         * 69: areturn
+         * 70: new           #1                  // class java/awt/image/Kernel
+         * 73: dup
+         * 74: iconst_3
+         * 75: iconst_3
+         * 76: getstatic     #5                  // Field MASCARA_ENFOQUE_3x3:[F
+         * 79: invokespecial #3                  // Method java/awt/image/Kernel."<init>":(II[F)V
+         * 82: areturn
+         * 83: new           #1                  // class java/awt/image/Kernel
+         * 86: dup
+         * 87: iconst_3
+         * 88: iconst_3
+         * 89: getstatic     #6                  // Field MASCARA_RELIEVE_3x3:[F
+         * 92: invokespecial #3                  // Method java/awt/image/Kernel."<init>":(II[F)V
+         * 95: areturn
+         * 96: new           #1                  // class java/awt/image/Kernel
+         * 99: dup
+         * 100: iconst_3
+         * 101: iconst_3
+         * 102: getstatic     #7                  // Field MASCARA_LAPLACIANA_3x3:[F
+         * 105: invokespecial #3                  // Method java/awt/image/Kernel."<init>":(II[F)V
+         * 108: areturn
+         * 109: new           #1                  // class java/awt/image/Kernel
+         * 112: dup
+         * 113: iconst_3
+         * 114: iconst_3
+         * 115: getstatic     #8                  // Field MASCARA_SOBELX_3x3:[F
+         * 118: invokespecial #3                  // Method java/awt/image/Kernel."<init>":(II[F)V
+         * 121: areturn
+         * 122: new           #1                  // class java/awt/image/Kernel
+         * 125: dup
+         * 126: iconst_3
+         * 127: iconst_3
+         * 128: getstatic     #9                  // Field MASCARA_SOBELY_3x3:[F
+         * 131: invokespecial #3                  // Method java/awt/image/Kernel."<init>":(II[F)V
+         * 134: areturn
+         * 135: aconst_null
+         * 136: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    private KernelProducer() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #10                 // Method java/lang/Object."<init>":()V
+         * 4: return
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.LookupTable;
+import java.lang.Object;
+
+public class LookupTableProducer extends Object {
+
+    public static final int TYPE_NEGATIVE = 0;
+    public static final int TYPE_SFUNCION = 1;
+    public static final int TYPE_LOGARITHM = 2;
+    public static final int TYPE_POWER = 3;
+    public static final int TYPE_ROOT = 4;
+    public static final int TYPE_GAMMA_CORRECTION = 5;
+    public static final int MAX_LEVEL = 255;
+    public static final double DEFAULT_M_SFUNCTION = 128.0;
+    public static final double DEFAULT_E_SFUNCTION = 4.0;
+    public static final double DEFAULT_POWER = 2.0;
+    public static final double DEFAULT_ROOT = 3.0;
+    public static final double DEFAULT_A_GAMMA = 1.0;
+    public static final double DEFAULT_GAMMA = 0.4;
+    protected static boolean ECHO;
+
+    public static LookupTable createLookupTable(int type) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_0
+         * 1: tableswitch   { // 0 to 5
+         * 0: 40
+         * 1: 44
+         * 2: 54
+         * 3: 58
+         * 4: 65
+         * 5: 72
+         * default: 80
+         * }
+         * 40: invokestatic  #1                  // Method negativeFuction:()Ljava/awt/image/LookupTable;
+         * 43: areturn
+         * 44: ldc2_w        #3                  // double 128.0d
+         * 47: ldc2_w        #5                  // double 4.0d
+         * 50: invokestatic  #7                  // Method sFuction:(DD)Ljava/awt/image/LookupTable;
+         * 53: areturn
+         * 54: invokestatic  #8                  // Method logarithmFuction:()Ljava/awt/image/LookupTable;
+         * 57: areturn
+         * 58: ldc2_w        #9                  // double 2.0d
+         * 61: invokestatic  #11                 // Method powerFuction:(D)Ljava/awt/image/LookupTable;
+         * 64: areturn
+         * 65: ldc2_w        #12                 // double 3.0d
+         * 68: invokestatic  #14                 // Method rootFuction:(D)Ljava/awt/image/LookupTable;
+         * 71: areturn
+         * 72: dconst_1
+         * 73: ldc2_w        #15                 // double 0.4d
+         * 76: invokestatic  #17                 // Method gammaCorrection:(DD)Ljava/awt/image/LookupTable;
+         * 79: areturn
+         * 80: aconst_null
+         * 81: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public static LookupTable negativeFuction() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: sipush        256
+         * 3: newarray       byte
+         * 5: astore_0
+         * 6: iconst_0
+         * 7: istore_1
+         * 8: iload_1
+         * 9: sipush        255
+         * 12: if_icmpgt     30
+         * 15: aload_0
+         * 16: iload_1
+         * 17: sipush        255
+         * 20: iload_1
+         * 21: isub
+         * 22: i2b
+         * 23: bastore
+         * 24: iinc          1, 1
+         * 27: goto          8
+         * 30: new           #18                 // class java/awt/image/ByteLookupTable
+         * 33: dup
+         * 34: iconst_0
+         * 35: aload_0
+         * 36: invokespecial #19                 // Method java/awt/image/ByteLookupTable."<init>":(I[B)V
+         * 39: astore_1
+         * 40: getstatic     #20                 // Field ECHO:Z
+         * 43: ifeq          50
+         * 46: aload_0
+         * 47: invokestatic  #21                 // Method plot:([B)V
+         * 50: aload_1
+         * 51: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public static LookupTable sFuction(double m, double e) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: ldc2_w        #22                 // double 255.0d
+         * 3: dconst_1
+         * 4: dconst_1
+         * 5: dload_0
+         * 6: ldc2_w        #22                 // double 255.0d
+         * 9: ddiv
+         * 10: dload_2
+         * 11: invokestatic  #24                 // Method java/lang/Math.pow:(DD)D
+         * 14: dadd
+         * 15: ddiv
+         * 16: ddiv
+         * 17: dstore        4
+         * 19: sipush        256
+         * 22: newarray       byte
+         * 24: astore        6
+         * 26: aload         6
+         * 28: iconst_0
+         * 29: iconst_0
+         * 30: bastore
+         * 31: iconst_1
+         * 32: istore        7
+         * 34: iload         7
+         * 36: sipush        255
+         * 39: if_icmpgt     72
+         * 42: aload         6
+         * 44: iload         7
+         * 46: dload         4
+         * 48: dconst_1
+         * 49: dconst_1
+         * 50: dload_0
+         * 51: iload         7
+         * 53: i2f
+         * 54: f2d
+         * 55: ddiv
+         * 56: dload_2
+         * 57: invokestatic  #24                 // Method java/lang/Math.pow:(DD)D
+         * 60: dadd
+         * 61: ddiv
+         * 62: dmul
+         * 63: d2i
+         * 64: i2b
+         * 65: bastore
+         * 66: iinc          7, 1
+         * 69: goto          34
+         * 72: new           #18                 // class java/awt/image/ByteLookupTable
+         * 75: dup
+         * 76: iconst_0
+         * 77: aload         6
+         * 79: invokespecial #19                 // Method java/awt/image/ByteLookupTable."<init>":(I[B)V
+         * 82: astore        7
+         * 84: getstatic     #20                 // Field ECHO:Z
+         * 87: ifeq          95
+         * 90: aload         6
+         * 92: invokestatic  #21                 // Method plot:([B)V
+         * 95: aload         7
+         * 97: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public static LookupTable logarithmFuction() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: ldc2_w        #22                 // double 255.0d
+         * 3: ldc2_w        #25                 // double 256.0d
+         * 6: invokestatic  #27                 // Method java/lang/Math.log:(D)D
+         * 9: ddiv
+         * 10: dstore_0
+         * 11: sipush        256
+         * 14: newarray       byte
+         * 16: astore_2
+         * 17: iconst_0
+         * 18: istore_3
+         * 19: iload_3
+         * 20: sipush        255
+         * 23: if_icmpgt     46
+         * 26: aload_2
+         * 27: iload_3
+         * 28: dload_0
+         * 29: dconst_1
+         * 30: iload_3
+         * 31: i2d
+         * 32: dadd
+         * 33: invokestatic  #27                 // Method java/lang/Math.log:(D)D
+         * 36: dmul
+         * 37: d2i
+         * 38: i2b
+         * 39: bastore
+         * 40: iinc          3, 1
+         * 43: goto          19
+         * 46: new           #18                 // class java/awt/image/ByteLookupTable
+         * 49: dup
+         * 50: iconst_0
+         * 51: aload_2
+         * 52: invokespecial #19                 // Method java/awt/image/ByteLookupTable."<init>":(I[B)V
+         * 55: astore_3
+         * 56: getstatic     #20                 // Field ECHO:Z
+         * 59: ifeq          66
+         * 62: aload_2
+         * 63: invokestatic  #21                 // Method plot:([B)V
+         * 66: aload_3
+         * 67: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public static LookupTable powerFuction(double n) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: ldc2_w        #22                 // double 255.0d
+         * 3: ldc2_w        #22                 // double 255.0d
+         * 6: dload_0
+         * 7: invokestatic  #24                 // Method java/lang/Math.pow:(DD)D
+         * 10: ddiv
+         * 11: dstore_2
+         * 12: sipush        256
+         * 15: newarray       byte
+         * 17: astore        4
+         * 19: iconst_0
+         * 20: istore        5
+         * 22: iload         5
+         * 24: sipush        255
+         * 27: if_icmpgt     52
+         * 30: aload         4
+         * 32: iload         5
+         * 34: dload_2
+         * 35: iload         5
+         * 37: i2d
+         * 38: dload_0
+         * 39: invokestatic  #24                 // Method java/lang/Math.pow:(DD)D
+         * 42: dmul
+         * 43: d2i
+         * 44: i2b
+         * 45: bastore
+         * 46: iinc          5, 1
+         * 49: goto          22
+         * 52: new           #18                 // class java/awt/image/ByteLookupTable
+         * 55: dup
+         * 56: iconst_0
+         * 57: aload         4
+         * 59: invokespecial #19                 // Method java/awt/image/ByteLookupTable."<init>":(I[B)V
+         * 62: astore        5
+         * 64: getstatic     #20                 // Field ECHO:Z
+         * 67: ifeq          75
+         * 70: aload         4
+         * 72: invokestatic  #21                 // Method plot:([B)V
+         * 75: aload         5
+         * 77: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public static LookupTable rootFuction(double n) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: dconst_1
+         * 1: dload_0
+         * 2: ddiv
+         * 3: invokestatic  #11                 // Method powerFuction:(D)Ljava/awt/image/LookupTable;
+         * 6: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public static LookupTable gammaCorrection(double cteA, double gamma) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: dload_2
+         * 1: dconst_0
+         * 2: dcmpg
+         * 3: ifgt          8
+         * 6: aconst_null
+         * 7: areturn
+         * 8: ldc2_w        #22                 // double 255.0d
+         * 11: dload_0
+         * 12: ldc2_w        #22                 // double 255.0d
+         * 15: dload_2
+         * 16: invokestatic  #24                 // Method java/lang/Math.pow:(DD)D
+         * 19: dmul
+         * 20: ddiv
+         * 21: dstore        4
+         * 23: sipush        256
+         * 26: newarray       byte
+         * 28: astore        6
+         * 30: iconst_0
+         * 31: istore        7
+         * 33: iload         7
+         * 35: sipush        255
+         * 38: if_icmpgt     66
+         * 41: aload         6
+         * 43: iload         7
+         * 45: dload         4
+         * 47: dload_0
+         * 48: dmul
+         * 49: iload         7
+         * 51: i2d
+         * 52: dload_2
+         * 53: invokestatic  #24                 // Method java/lang/Math.pow:(DD)D
+         * 56: dmul
+         * 57: d2i
+         * 58: i2b
+         * 59: bastore
+         * 60: iinc          7, 1
+         * 63: goto          33
+         * 66: new           #18                 // class java/awt/image/ByteLookupTable
+         * 69: dup
+         * 70: iconst_0
+         * 71: aload         6
+         * 73: invokespecial #19                 // Method java/awt/image/ByteLookupTable."<init>":(I[B)V
+         * 76: astore        7
+         * 78: getstatic     #20                 // Field ECHO:Z
+         * 81: ifeq          89
+         * 84: aload         6
+         * 86: invokestatic  #21                 // Method plot:([B)V
+         * 89: aload         7
+         * 91: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    protected LookupTableProducer() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #28                 // Method java/lang/Object."<init>":()V
+         * 4: return
+         *  */
+        // </editor-fold>
+    }
+
+    public static void plot(byte[] lt) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iconst_0
+         * 1: istore_1
+         * 2: iload_1
+         * 3: sipush        255
+         * 6: if_icmpgt     45
+         * 9: getstatic     #29                 // Field java/lang/System.out:Ljava/io/PrintStream;
+         * 12: new           #30                 // class java/lang/StringBuilder
+         * 15: dup
+         * 16: invokespecial #31                 // Method java/lang/StringBuilder."<init>":()V
+         * 19: aload_0
+         * 20: iload_1
+         * 21: baload
+         * 22: invokestatic  #32                 // Method java/lang/Byte.toUnsignedInt:(B)I
+         * 25: invokevirtual #33                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+         * 28: ldc           #34                 // String
+         * 30: invokevirtual #35                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+         * 33: invokevirtual #36                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+         * 36: invokevirtual #37                 // Method java/io/PrintStream.print:(Ljava/lang/String;)V
+         * 39: iinc          1, 1
+         * 42: goto          2
+         * 45: getstatic     #29                 // Field java/lang/System.out:Ljava/io/PrintStream;
+         * 48: invokevirtual #38                 // Method java/io/PrintStream.println:()V
+         * 51: return
+         *  */
+        // </editor-fold>
+    }
+
+    public static void setECHO(boolean ECHO) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_0
+         * 1: putstatic     #20                 // Field ECHO:Z
+         * 4: return
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.BufferedImage;
+
+public class MultiplicationOp extends BinaryOp {
+
+    public MultiplicationOp(BufferedImage img) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: aload_1
+         * 2: invokespecial #1                  // Method sm/image/BinaryOp."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 5: return
+         *  */
+        // </editor-fold>
+    }
+
+    public int binaryOp(int v1, int v2) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_1
+         * 1: iload_2
+         * 2: imul
+         * 3: istore_3
+         * 4: aload_0
+         * 5: iload_3
+         * 6: iconst_0
+         * 7: sipush        255
+         * 10: invokevirtual #3                  // Method clampRange:(III)I
+         * 13: ireturn
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.BufferedImage;
+
+public class SepiaOp extends BufferedImageOpAdapter {
+
+    private final float[][] sepiaMatrix;
+
+    public SepiaOp() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method sm/image/BufferedImageOpAdapter."<init>":()V
+         * 4: aload_0
+         * 5: iconst_3
+         * 6: anewarray     #2                  // class "[F"
+         * 9: dup
+         * 10: iconst_0
+         * 11: iconst_3
+         * 12: newarray       float
+         * 14: dup
+         * 15: iconst_0
+         * 16: ldc           #3                  // float 0.393f
+         * 18: fastore
+         * 19: dup
+         * 20: iconst_1
+         * 21: ldc           #4                  // float 0.769f
+         * 23: fastore
+         * 24: dup
+         * 25: iconst_2
+         * 26: ldc           #5                  // float 0.189f
+         * 28: fastore
+         * 29: aastore
+         * 30: dup
+         * 31: iconst_1
+         * 32: iconst_3
+         * 33: newarray       float
+         * 35: dup
+         * 36: iconst_0
+         * 37: ldc           #6                  // float 0.349f
+         * 39: fastore
+         * 40: dup
+         * 41: iconst_1
+         * 42: ldc           #7                  // float 0.686f
+         * 44: fastore
+         * 45: dup
+         * 46: iconst_2
+         * 47: ldc           #8                  // float 0.168f
+         * 49: fastore
+         * 50: aastore
+         * 51: dup
+         * 52: iconst_2
+         * 53: iconst_3
+         * 54: newarray       float
+         * 56: dup
+         * 57: iconst_0
+         * 58: ldc           #9                  // float 0.272f
+         * 60: fastore
+         * 61: dup
+         * 62: iconst_1
+         * 63: ldc           #10                 // float 0.534f
+         * 65: fastore
+         * 66: dup
+         * 67: iconst_2
+         * 68: ldc           #11                 // float 0.131f
+         * 70: fastore
+         * 71: aastore
+         * 72: putfield      #12                 // Field sepiaMatrix:[[F
+         * 75: return
+         *  */
+        // </editor-fold>
+    }
+
+    public BufferedImage filter(BufferedImage src, BufferedImage dest) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: ifnonnull     14
+         * 4: new           #13                 // class java/lang/NullPointerException
+         * 7: dup
+         * 8: ldc           #14                 // String src image is null
+         * 10: invokespecial #15                 // Method java/lang/NullPointerException."<init>":(Ljava/lang/String;)V
+         * 13: athrow
+         * 14: aload_2
+         * 15: ifnonnull     25
+         * 18: aload_0
+         * 19: aload_1
+         * 20: aconst_null
+         * 21: invokevirtual #16                 // Method createCompatibleDestImage:(Ljava/awt/image/BufferedImage;Ljava/awt/image/ColorModel;)Ljava/awt/image/BufferedImage;
+         * 24: astore_2
+         * 25: aload_2
+         * 26: invokevirtual #17                 // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 29: astore_3
+         * 30: new           #18                 // class sm/image/BufferedImagePixelIterator
+         * 33: dup
+         * 34: aload_1
+         * 35: invokespecial #19                 // Method sm/image/BufferedImagePixelIterator."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 38: astore        11
+         * 40: aload         11
+         * 42: invokevirtual #20                 // Method sm/image/BufferedImagePixelIterator.hasNext:()Z
+         * 45: ifeq          290
+         * 48: aload         11
+         * 50: invokevirtual #21                 // Method sm/image/BufferedImagePixelIterator.next:()Lsm/image/BufferedImagePixelIterator$PixelData;
+         * 53: astore        4
+         * 55: aload         4
+         * 57: getfield      #22                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 60: iconst_0
+         * 61: iaload
+         * 62: i2f
+         * 63: fstore        5
+         * 65: aload         4
+         * 67: getfield      #22                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 70: iconst_1
+         * 71: iaload
+         * 72: i2f
+         * 73: fstore        6
+         * 75: aload         4
+         * 77: getfield      #22                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 80: iconst_2
+         * 81: iaload
+         * 82: i2f
+         * 83: fstore        7
+         * 85: fload         5
+         * 87: aload_0
+         * 88: getfield      #12                 // Field sepiaMatrix:[[F
+         * 91: iconst_0
+         * 92: aaload
+         * 93: iconst_0
+         * 94: faload
+         * 95: fmul
+         * 96: fload         6
+         * 98: aload_0
+         * 99: getfield      #12                 // Field sepiaMatrix:[[F
+         * 102: iconst_0
+         * 103: aaload
+         * 104: iconst_1
+         * 105: faload
+         * 106: fmul
+         * 107: fadd
+         * 108: fload         7
+         * 110: aload_0
+         * 111: getfield      #12                 // Field sepiaMatrix:[[F
+         * 114: iconst_0
+         * 115: aaload
+         * 116: iconst_2
+         * 117: faload
+         * 118: fmul
+         * 119: fadd
+         * 120: fstore        8
+         * 122: fload         5
+         * 124: aload_0
+         * 125: getfield      #12                 // Field sepiaMatrix:[[F
+         * 128: iconst_1
+         * 129: aaload
+         * 130: iconst_0
+         * 131: faload
+         * 132: fmul
+         * 133: fload         6
+         * 135: aload_0
+         * 136: getfield      #12                 // Field sepiaMatrix:[[F
+         * 139: iconst_1
+         * 140: aaload
+         * 141: iconst_1
+         * 142: faload
+         * 143: fmul
+         * 144: fadd
+         * 145: fload         7
+         * 147: aload_0
+         * 148: getfield      #12                 // Field sepiaMatrix:[[F
+         * 151: iconst_1
+         * 152: aaload
+         * 153: iconst_2
+         * 154: faload
+         * 155: fmul
+         * 156: fadd
+         * 157: fstore        9
+         * 159: fload         5
+         * 161: aload_0
+         * 162: getfield      #12                 // Field sepiaMatrix:[[F
+         * 165: iconst_2
+         * 166: aaload
+         * 167: iconst_0
+         * 168: faload
+         * 169: fmul
+         * 170: fload         6
+         * 172: aload_0
+         * 173: getfield      #12                 // Field sepiaMatrix:[[F
+         * 176: iconst_2
+         * 177: aaload
+         * 178: iconst_1
+         * 179: faload
+         * 180: fmul
+         * 181: fadd
+         * 182: fload         7
+         * 184: aload_0
+         * 185: getfield      #12                 // Field sepiaMatrix:[[F
+         * 188: iconst_2
+         * 189: aaload
+         * 190: iconst_2
+         * 191: faload
+         * 192: fmul
+         * 193: fadd
+         * 194: fstore        10
+         * 196: aload         4
+         * 198: getfield      #22                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 201: iconst_0
+         * 202: fload         8
+         * 204: ldc           #23                 // float 255.0f
+         * 206: fcmpl
+         * 207: ifle          216
+         * 210: sipush        255
+         * 213: goto          219
+         * 216: fload         8
+         * 218: f2i
+         * 219: iastore
+         * 220: aload         4
+         * 222: getfield      #22                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 225: iconst_1
+         * 226: fload         9
+         * 228: ldc           #23                 // float 255.0f
+         * 230: fcmpl
+         * 231: ifle          240
+         * 234: sipush        255
+         * 237: goto          243
+         * 240: fload         9
+         * 242: f2i
+         * 243: iastore
+         * 244: aload         4
+         * 246: getfield      #22                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 249: iconst_2
+         * 250: fload         10
+         * 252: ldc           #23                 // float 255.0f
+         * 254: fcmpl
+         * 255: ifle          264
+         * 258: sipush        255
+         * 261: goto          267
+         * 264: fload         10
+         * 266: f2i
+         * 267: iastore
+         * 268: aload_3
+         * 269: aload         4
+         * 271: getfield      #24                 // Field sm/image/BufferedImagePixelIterator$PixelData.col:I
+         * 274: aload         4
+         * 276: getfield      #25                 // Field sm/image/BufferedImagePixelIterator$PixelData.row:I
+         * 279: aload         4
+         * 281: getfield      #22                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 284: invokevirtual #26                 // Method java/awt/image/WritableRaster.setPixel:(II[I)V
+         * 287: goto          40
+         * 290: aload_2
+         * 291: areturn
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.BufferedImage;
+
+public class SobelOp extends BufferedImageOpAdapter {
+
+    public SobelOp() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method sm/image/BufferedImageOpAdapter."<init>":()V
+         * 4: return
+         *  */
+        // </editor-fold>
+    }
+
+    public BufferedImage filter(BufferedImage src, BufferedImage dest) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: ifnonnull     14
+         * 4: new           #2                  // class java/lang/NullPointerException
+         * 7: dup
+         * 8: ldc           #3                  // String src image is null
+         * 10: invokespecial #4                  // Method java/lang/NullPointerException."<init>":(Ljava/lang/String;)V
+         * 13: athrow
+         * 14: aload_2
+         * 15: ifnonnull     25
+         * 18: aload_0
+         * 19: aload_1
+         * 20: aconst_null
+         * 21: invokevirtual #5                  // Method createCompatibleDestImage:(Ljava/awt/image/BufferedImage;Ljava/awt/image/ColorModel;)Ljava/awt/image/BufferedImage;
+         * 24: astore_2
+         * 25: iconst_5
+         * 26: invokestatic  #7                  // Method sm/image/KernelProducer.createKernel:(I)Ljava/awt/image/Kernel;
+         * 29: astore_3
+         * 30: new           #8                  // class java/awt/image/ConvolveOp
+         * 33: dup
+         * 34: aload_3
+         * 35: invokespecial #9                  // Method java/awt/image/ConvolveOp."<init>":(Ljava/awt/image/Kernel;)V
+         * 38: astore        4
+         * 40: aload         4
+         * 42: aload_1
+         * 43: aconst_null
+         * 44: invokevirtual #10                 // Method java/awt/image/ConvolveOp.filter:(Ljava/awt/image/BufferedImage;Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
+         * 47: astore        5
+         * 49: bipush        6
+         * 51: invokestatic  #7                  // Method sm/image/KernelProducer.createKernel:(I)Ljava/awt/image/Kernel;
+         * 54: astore        6
+         * 56: new           #8                  // class java/awt/image/ConvolveOp
+         * 59: dup
+         * 60: aload         6
+         * 62: invokespecial #9                  // Method java/awt/image/ConvolveOp."<init>":(Ljava/awt/image/Kernel;)V
+         * 65: astore        7
+         * 67: aload         7
+         * 69: aload_1
+         * 70: aconst_null
+         * 71: invokevirtual #10                 // Method java/awt/image/ConvolveOp.filter:(Ljava/awt/image/BufferedImage;Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
+         * 74: astore        8
+         * 76: new           #11                 // class sm/image/BufferedImagePixelIterator
+         * 79: dup
+         * 80: aload         5
+         * 82: invokespecial #12                 // Method sm/image/BufferedImagePixelIterator."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 85: astore        9
+         * 87: new           #11                 // class sm/image/BufferedImagePixelIterator
+         * 90: dup
+         * 91: aload         8
+         * 93: invokespecial #12                 // Method sm/image/BufferedImagePixelIterator."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 96: astore        10
+         * 98: aload         9
+         * 100: invokevirtual #13                 // Method sm/image/BufferedImagePixelIterator.hasNext:()Z
+         * 103: ifeq          231
+         * 106: aload         9
+         * 108: invokevirtual #14                 // Method sm/image/BufferedImagePixelIterator.next:()Lsm/image/BufferedImagePixelIterator$PixelData;
+         * 111: astore        11
+         * 113: aload         10
+         * 115: invokevirtual #14                 // Method sm/image/BufferedImagePixelIterator.next:()Lsm/image/BufferedImagePixelIterator$PixelData;
+         * 118: astore        12
+         * 120: iconst_0
+         * 121: dup
+         * 122: istore        14
+         * 124: istore        13
+         * 126: iconst_0
+         * 127: istore        16
+         * 129: iload         16
+         * 131: aload         11
+         * 133: getfield      #15                 // Field sm/image/BufferedImagePixelIterator$PixelData.numSamples:I
+         * 136: if_icmpge     171
+         * 139: iload         13
+         * 141: aload         11
+         * 143: getfield      #16                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 146: iload         16
+         * 148: iaload
+         * 149: iadd
+         * 150: istore        13
+         * 152: iload         14
+         * 154: aload         12
+         * 156: getfield      #16                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 159: iload         16
+         * 161: iaload
+         * 162: iadd
+         * 163: istore        14
+         * 165: iinc          16, 1
+         * 168: goto          129
+         * 171: iload         13
+         * 173: i2d
+         * 174: iload         14
+         * 176: i2d
+         * 177: invokestatic  #17                 // Method java/lang/Math.hypot:(DD)D
+         * 180: d2i
+         * 181: istore        15
+         * 183: iload         15
+         * 185: iconst_0
+         * 186: sipush        255
+         * 189: invokestatic  #18                 // Method sm/image/ImageTools.clampRange:(III)I
+         * 192: istore        15
+         * 194: new           #19                 // class java/awt/Color
+         * 197: dup
+         * 198: iload         15
+         * 200: iload         15
+         * 202: iload         15
+         * 204: invokespecial #20                 // Method java/awt/Color."<init>":(III)V
+         * 207: astore        16
+         * 209: aload_2
+         * 210: aload         11
+         * 212: getfield      #21                 // Field sm/image/BufferedImagePixelIterator$PixelData.col:I
+         * 215: aload         11
+         * 217: getfield      #22                 // Field sm/image/BufferedImagePixelIterator$PixelData.row:I
+         * 220: aload         16
+         * 222: invokevirtual #23                 // Method java/awt/Color.getRGB:()I
+         * 225: invokevirtual #24                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+         * 228: goto          98
+         * 231: aload_2
+         * 232: areturn
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.image.BufferedImage;
+
+public class SubtractionOp extends BinaryOp {
+
+    public SubtractionOp(BufferedImage img) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: aload_1
+         * 2: invokespecial #1                  // Method sm/image/BinaryOp."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 5: return
+         *  */
+        // </editor-fold>
+    }
+
+    public int binaryOp(int v1, int v2) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_1
+         * 1: iload_2
+         * 2: isub
+         * 3: istore_3
+         * 4: aload_0
+         * 5: iload_3
+         * 6: iconst_0
+         * 7: sipush        255
+         * 10: invokevirtual #3                  // Method clampRange:(III)I
+         * 13: ireturn
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+
+public class ThresholdOp extends BufferedImageOpAdapter {
+
+    private int threshold;
+    private Color center;
+    private int type;
+    private boolean useOriginalColor;
+    public static final int TYPE_EACH_BAND = 1;
+    public static final int TYPE_GREY_LEVEL = 2;
+    public static final int TYPE_COLOR = 3;
+    private final int DEFAULT_TYPE = 2;
+
+    public ThresholdOp(int threshold) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method sm/image/BufferedImageOpAdapter."<init>":()V
+         * 4: aload_0
+         * 5: iconst_0
+         * 6: putfield      #2                  // Field useOriginalColor:Z
+         * 9: aload_0
+         * 10: iconst_2
+         * 11: putfield      #4                  // Field DEFAULT_TYPE:I
+         * 14: aload_0
+         * 15: iconst_2
+         * 16: invokevirtual #5                  // Method setType:(I)V
+         * 19: aload_0
+         * 20: iload_1
+         * 21: invokevirtual #6                  // Method setThreshold:(I)V
+         * 24: return
+         *  */
+        // </editor-fold>
+    }
+
+    public ThresholdOp(Color center, int threshold) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method sm/image/BufferedImageOpAdapter."<init>":()V
+         * 4: aload_0
+         * 5: iconst_0
+         * 6: putfield      #2                  // Field useOriginalColor:Z
+         * 9: aload_0
+         * 10: iconst_2
+         * 11: putfield      #4                  // Field DEFAULT_TYPE:I
+         * 14: aload_0
+         * 15: iconst_3
+         * 16: invokevirtual #5                  // Method setType:(I)V
+         * 19: aload_0
+         * 20: aload_1
+         * 21: iload_2
+         * 22: invokevirtual #7                  // Method setThreshold:(Ljava/awt/Color;I)V
+         * 25: return
+         *  */
+        // </editor-fold>
+    }
+
+    public BufferedImage filter(BufferedImage src, BufferedImage dest) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: ifnonnull     14
+         * 4: new           #8                  // class java/lang/NullPointerException
+         * 7: dup
+         * 8: ldc           #9                  // String src image is null
+         * 10: invokespecial #10                 // Method java/lang/NullPointerException."<init>":(Ljava/lang/String;)V
+         * 13: athrow
+         * 14: aload_2
+         * 15: ifnonnull     25
+         * 18: aload_0
+         * 19: aload_1
+         * 20: aconst_null
+         * 21: invokevirtual #11                 // Method createCompatibleDestImage:(Ljava/awt/image/BufferedImage;Ljava/awt/image/ColorModel;)Ljava/awt/image/BufferedImage;
+         * 24: astore_2
+         * 25: aload_0
+         * 26: getfield      #12                 // Field type:I
+         * 29: tableswitch   { // 1 to 3
+         * 1: 56
+         * 2: 66
+         * 3: 76
+         * default: 83
+         * }
+         * 56: aload_0
+         * 57: aload_1
+         * 58: aload_2
+         * 59: invokespecial #13                 // Method filterEachBand:(Ljava/awt/image/BufferedImage;Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
+         * 62: astore_2
+         * 63: goto          83
+         * 66: aload_0
+         * 67: aload_1
+         * 68: aload_2
+         * 69: invokevirtual #14                 // Method filterGreyLevel:(Ljava/awt/image/BufferedImage;Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
+         * 72: astore_2
+         * 73: goto          83
+         * 76: aload_0
+         * 77: aload_1
+         * 78: aload_2
+         * 79: invokevirtual #15                 // Method filterColor:(Ljava/awt/image/BufferedImage;Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
+         * 82: astore_2
+         * 83: aload_2
+         * 84: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public BufferedImage filterColor(BufferedImage src, BufferedImage dest) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_2
+         * 1: invokevirtual #16                 // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 4: astore_3
+         * 5: aload_0
+         * 6: getfield      #17                 // Field center:Ljava/awt/Color;
+         * 9: aconst_null
+         * 10: invokevirtual #18                 // Method java/awt/Color.getColorComponents:([F)[F
+         * 13: astore        4
+         * 15: new           #19                 // class sm/image/BufferedImagePixelIterator
+         * 18: dup
+         * 19: aload_1
+         * 20: invokespecial #20                 // Method sm/image/BufferedImagePixelIterator."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 23: astore        6
+         * 25: aload         6
+         * 27: invokevirtual #21                 // Method sm/image/BufferedImagePixelIterator.hasNext:()Z
+         * 30: ifeq          167
+         * 33: aload         6
+         * 35: invokevirtual #22                 // Method sm/image/BufferedImagePixelIterator.next:()Lsm/image/BufferedImagePixelIterator$PixelData;
+         * 38: astore        7
+         * 40: aload_0
+         * 41: getfield      #2                  // Field useOriginalColor:Z
+         * 44: ifeq          69
+         * 47: aload_3
+         * 48: aload         7
+         * 50: getfield      #23                 // Field sm/image/BufferedImagePixelIterator$PixelData.col:I
+         * 53: aload         7
+         * 55: getfield      #24                 // Field sm/image/BufferedImagePixelIterator$PixelData.row:I
+         * 58: aload         7
+         * 60: getfield      #25                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 63: invokevirtual #26                 // Method java/awt/image/WritableRaster.setPixel:(II[I)V
+         * 66: goto          89
+         * 69: aload_2
+         * 70: aload         7
+         * 72: getfield      #23                 // Field sm/image/BufferedImagePixelIterator$PixelData.col:I
+         * 75: aload         7
+         * 77: getfield      #24                 // Field sm/image/BufferedImagePixelIterator$PixelData.row:I
+         * 80: getstatic     #27                 // Field java/awt/Color.white:Ljava/awt/Color;
+         * 83: invokevirtual #28                 // Method java/awt/Color.getRGB:()I
+         * 86: invokevirtual #29                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+         * 89: iconst_0
+         * 90: istore        8
+         * 92: iload         8
+         * 94: aload         7
+         * 96: getfield      #30                 // Field sm/image/BufferedImagePixelIterator$PixelData.numSamples:I
+         * 99: if_icmpge     164
+         * 102: aload         4
+         * 104: iload         8
+         * 106: faload
+         * 107: ldc           #31                 // float 255.0f
+         * 109: fmul
+         * 110: aload         7
+         * 112: getfield      #25                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 115: iload         8
+         * 117: iaload
+         * 118: i2f
+         * 119: fsub
+         * 120: invokestatic  #32                 // Method java/lang/Math.abs:(F)F
+         * 123: f2i
+         * 124: istore        5
+         * 126: iload         5
+         * 128: aload_0
+         * 129: getfield      #33                 // Field threshold:I
+         * 132: if_icmple     158
+         * 135: aload_2
+         * 136: aload         7
+         * 138: getfield      #23                 // Field sm/image/BufferedImagePixelIterator$PixelData.col:I
+         * 141: aload         7
+         * 143: getfield      #24                 // Field sm/image/BufferedImagePixelIterator$PixelData.row:I
+         * 146: getstatic     #34                 // Field java/awt/Color.black:Ljava/awt/Color;
+         * 149: invokevirtual #28                 // Method java/awt/Color.getRGB:()I
+         * 152: invokevirtual #29                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+         * 155: goto          164
+         * 158: iinc          8, 1
+         * 161: goto          92
+         * 164: goto          25
+         * 167: aload_2
+         * 168: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public BufferedImage filterGreyLevel(BufferedImage src, BufferedImage dest) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_2
+         * 1: invokevirtual #16                 // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 4: astore_3
+         * 5: new           #19                 // class sm/image/BufferedImagePixelIterator
+         * 8: dup
+         * 9: aload_1
+         * 10: invokespecial #20                 // Method sm/image/BufferedImagePixelIterator."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 13: astore        5
+         * 15: aload         5
+         * 17: invokevirtual #21                 // Method sm/image/BufferedImagePixelIterator.hasNext:()Z
+         * 20: ifeq          159
+         * 23: aload         5
+         * 25: invokevirtual #22                 // Method sm/image/BufferedImagePixelIterator.next:()Lsm/image/BufferedImagePixelIterator$PixelData;
+         * 28: astore        6
+         * 30: iconst_0
+         * 31: istore        4
+         * 33: iconst_0
+         * 34: istore        7
+         * 36: iload         7
+         * 38: aload         6
+         * 40: getfield      #30                 // Field sm/image/BufferedImagePixelIterator$PixelData.numSamples:I
+         * 43: if_icmpge     65
+         * 46: iload         4
+         * 48: aload         6
+         * 50: getfield      #25                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 53: iload         7
+         * 55: iaload
+         * 56: iadd
+         * 57: istore        4
+         * 59: iinc          7, 1
+         * 62: goto          36
+         * 65: iload         4
+         * 67: aload         6
+         * 69: getfield      #30                 // Field sm/image/BufferedImagePixelIterator$PixelData.numSamples:I
+         * 72: idiv
+         * 73: istore        4
+         * 75: iload         4
+         * 77: aload_0
+         * 78: getfield      #33                 // Field threshold:I
+         * 81: if_icmpge     107
+         * 84: aload_2
+         * 85: aload         6
+         * 87: getfield      #23                 // Field sm/image/BufferedImagePixelIterator$PixelData.col:I
+         * 90: aload         6
+         * 92: getfield      #24                 // Field sm/image/BufferedImagePixelIterator$PixelData.row:I
+         * 95: getstatic     #34                 // Field java/awt/Color.black:Ljava/awt/Color;
+         * 98: invokevirtual #28                 // Method java/awt/Color.getRGB:()I
+         * 101: invokevirtual #29                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+         * 104: goto          156
+         * 107: aload_0
+         * 108: getfield      #2                  // Field useOriginalColor:Z
+         * 111: ifeq          136
+         * 114: aload_3
+         * 115: aload         6
+         * 117: getfield      #23                 // Field sm/image/BufferedImagePixelIterator$PixelData.col:I
+         * 120: aload         6
+         * 122: getfield      #24                 // Field sm/image/BufferedImagePixelIterator$PixelData.row:I
+         * 125: aload         6
+         * 127: getfield      #25                 // Field sm/image/BufferedImagePixelIterator$PixelData.sample:[I
+         * 130: invokevirtual #26                 // Method java/awt/image/WritableRaster.setPixel:(II[I)V
+         * 133: goto          156
+         * 136: aload_2
+         * 137: aload         6
+         * 139: getfield      #23                 // Field sm/image/BufferedImagePixelIterator$PixelData.col:I
+         * 142: aload         6
+         * 144: getfield      #24                 // Field sm/image/BufferedImagePixelIterator$PixelData.row:I
+         * 147: getstatic     #27                 // Field java/awt/Color.white:Ljava/awt/Color;
+         * 150: invokevirtual #28                 // Method java/awt/Color.getRGB:()I
+         * 153: invokevirtual #29                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+         * 156: goto          15
+         * 159: aload_2
+         * 160: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    private BufferedImage filterEachBand(BufferedImage src, BufferedImage dest) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_2
+         * 1: invokevirtual #16                 // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 4: astore_3
+         * 5: new           #35                 // class sm/image/BufferedImageSampleIterator
+         * 8: dup
+         * 9: aload_1
+         * 10: invokespecial #36                 // Method sm/image/BufferedImageSampleIterator."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 13: astore        4
+         * 15: aload         4
+         * 17: invokevirtual #37                 // Method sm/image/BufferedImageSampleIterator.hasNext:()Z
+         * 20: ifeq          96
+         * 23: aload         4
+         * 25: invokevirtual #38                 // Method sm/image/BufferedImageSampleIterator.next:()Lsm/image/BufferedImageSampleIterator$SampleData;
+         * 28: astore        5
+         * 30: aload         5
+         * 32: aload         5
+         * 34: getfield      #39                 // Field sm/image/BufferedImageSampleIterator$SampleData.value:I
+         * 37: aload_0
+         * 38: getfield      #33                 // Field threshold:I
+         * 41: if_icmpge     48
+         * 44: iconst_0
+         * 45: goto          66
+         * 48: aload_0
+         * 49: getfield      #2                  // Field useOriginalColor:Z
+         * 52: ifeq          63
+         * 55: aload         5
+         * 57: getfield      #39                 // Field sm/image/BufferedImageSampleIterator$SampleData.value:I
+         * 60: goto          66
+         * 63: sipush        255
+         * 66: putfield      #39                 // Field sm/image/BufferedImageSampleIterator$SampleData.value:I
+         * 69: aload_3
+         * 70: aload         5
+         * 72: getfield      #40                 // Field sm/image/BufferedImageSampleIterator$SampleData.col:I
+         * 75: aload         5
+         * 77: getfield      #41                 // Field sm/image/BufferedImageSampleIterator$SampleData.row:I
+         * 80: aload         5
+         * 82: getfield      #42                 // Field sm/image/BufferedImageSampleIterator$SampleData.band:I
+         * 85: aload         5
+         * 87: getfield      #39                 // Field sm/image/BufferedImageSampleIterator$SampleData.value:I
+         * 90: invokevirtual #43                 // Method java/awt/image/WritableRaster.setSample:(IIII)V
+         * 93: goto          15
+         * 96: aload_2
+         * 97: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public final void setType(int type) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: iload_1
+         * 1: iconst_3
+         * 2: if_icmpeq     25
+         * 5: iload_1
+         * 6: iconst_1
+         * 7: if_icmpeq     25
+         * 10: iload_1
+         * 11: iconst_2
+         * 12: if_icmpeq     25
+         * 15: new           #44                 // class java/lang/IllegalArgumentException
+         * 18: dup
+         * 19: ldc           #45                 // String Invalid type
+         * 21: invokespecial #46                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+         * 24: athrow
+         * 25: aload_0
+         * 26: iload_1
+         * 27: putfield      #12                 // Field type:I
+         * 30: return
+         *  */
+        // </editor-fold>
+    }
+
+    public int getType() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #12                 // Field type:I
+         * 4: ireturn
+         *  */
+        // </editor-fold>
+    }
+
+    public final void setThreshold(int value) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: iload_1
+         * 2: putfield      #33                 // Field threshold:I
+         * 5: return
+         *  */
+        // </editor-fold>
+    }
+
+    public final void setThreshold(Color center, int ratio) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #12                 // Field type:I
+         * 4: iconst_3
+         * 5: if_icmpeq     18
+         * 8: new           #44                 // class java/lang/IllegalArgumentException
+         * 11: dup
+         * 12: ldc           #47                 // String Color type requested
+         * 14: invokespecial #46                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+         * 17: athrow
+         * 18: aload_0
+         * 19: aload_1
+         * 20: putfield      #17                 // Field center:Ljava/awt/Color;
+         * 23: aload_0
+         * 24: iload_2
+         * 25: putfield      #33                 // Field threshold:I
+         * 28: return
+         *  */
+        // </editor-fold>
+    }
+
+    public int getThreshold() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #33                 // Field threshold:I
+         * 4: ireturn
+         *  */
+        // </editor-fold>
+    }
+
+    public void useOriginalColor(boolean state) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: iload_1
+         * 2: putfield      #2                  // Field useOriginalColor:Z
+         * 5: return
+         *  */
+        // </editor-fold>
+    }
+}
+package sm.image;
+
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+
+public class TintOp extends BufferedImageOpAdapter {
+
+    private Color mixColor;
+    private float mixValue;
+
+    public TintOp(Color mixColor, float mixValue) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method sm/image/BufferedImageOpAdapter."<init>":()V
+         * 4: aload_0
+         * 5: aload_1
+         * 6: invokevirtual #2                  // Method setMixColor:(Ljava/awt/Color;)V
+         * 9: aload_0
+         * 10: fload_2
+         * 11: invokevirtual #3                  // Method setMixValue:(F)V
+         * 14: return
+         *  */
+        // </editor-fold>
+    }
+
+    public BufferedImage filter(BufferedImage src, BufferedImage dest) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: ifnonnull     14
+         * 4: new           #4                  // class java/lang/NullPointerException
+         * 7: dup
+         * 8: ldc           #5                  // String src image is null
+         * 10: invokespecial #6                  // Method java/lang/NullPointerException."<init>":(Ljava/lang/String;)V
+         * 13: athrow
+         * 14: aload_2
+         * 15: ifnonnull     25
+         * 18: aload_0
+         * 19: aload_1
+         * 20: aconst_null
+         * 21: invokevirtual #7                  // Method createCompatibleDestImage:(Ljava/awt/image/BufferedImage;Ljava/awt/image/ColorModel;)Ljava/awt/image/BufferedImage;
+         * 24: astore_2
+         * 25: aload_2
+         * 26: invokevirtual #8                  // Method java/awt/image/BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;
+         * 29: astore_3
+         * 30: aload_0
+         * 31: getfield      #9                  // Field mixColor:Ljava/awt/Color;
+         * 34: aconst_null
+         * 35: invokevirtual #10                 // Method java/awt/Color.getColorComponents:([F)[F
+         * 38: astore        4
+         * 40: new           #11                 // class sm/image/BufferedImageSampleIterator
+         * 43: dup
+         * 44: aload_1
+         * 45: invokespecial #12                 // Method sm/image/BufferedImageSampleIterator."<init>":(Ljava/awt/image/BufferedImage;)V
+         * 48: astore        5
+         * 50: aload         5
+         * 52: invokevirtual #13                 // Method sm/image/BufferedImageSampleIterator.hasNext:()Z
+         * 55: ifeq          128
+         * 58: aload         5
+         * 60: invokevirtual #14                 // Method sm/image/BufferedImageSampleIterator.next:()Lsm/image/BufferedImageSampleIterator$SampleData;
+         * 63: astore        6
+         * 65: aload         6
+         * 67: aload         6
+         * 69: getfield      #15                 // Field sm/image/BufferedImageSampleIterator$SampleData.value:I
+         * 72: i2f
+         * 73: fconst_1
+         * 74: aload_0
+         * 75: getfield      #16                 // Field mixValue:F
+         * 78: fsub
+         * 79: fmul
+         * 80: ldc           #17                 // float 255.0f
+         * 82: aload         4
+         * 84: aload         6
+         * 86: getfield      #18                 // Field sm/image/BufferedImageSampleIterator$SampleData.band:I
+         * 89: faload
+         * 90: fmul
+         * 91: aload_0
+         * 92: getfield      #16                 // Field mixValue:F
+         * 95: fmul
+         * 96: fadd
+         * 97: f2i
+         * 98: putfield      #15                 // Field sm/image/BufferedImageSampleIterator$SampleData.value:I
+         * 101: aload_3
+         * 102: aload         6
+         * 104: getfield      #19                 // Field sm/image/BufferedImageSampleIterator$SampleData.col:I
+         * 107: aload         6
+         * 109: getfield      #20                 // Field sm/image/BufferedImageSampleIterator$SampleData.row:I
+         * 112: aload         6
+         * 114: getfield      #18                 // Field sm/image/BufferedImageSampleIterator$SampleData.band:I
+         * 117: aload         6
+         * 119: getfield      #15                 // Field sm/image/BufferedImageSampleIterator$SampleData.value:I
+         * 122: invokevirtual #21                 // Method java/awt/image/WritableRaster.setSample:(IIII)V
+         * 125: goto          50
+         * 128: aload_2
+         * 129: areturn
+         *  */
+        // </editor-fold>
+    }
+
+    public final void setMixValue(float value) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: fload_1
+         * 1: fconst_0
+         * 2: fcmpg
+         * 3: ifge          11
+         * 6: fconst_0
+         * 7: fstore_1
+         * 8: goto          19
+         * 11: fload_1
+         * 12: fconst_1
+         * 13: fcmpl
+         * 14: ifle          19
+         * 17: fconst_1
+         * 18: fstore_1
+         * 19: aload_0
+         * 20: fload_1
+         * 21: putfield      #16                 // Field mixValue:F
+         * 24: return
+         *  */
+        // </editor-fold>
+    }
+
+    public final void setMixColor(Color color) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: ifnonnull     14
+         * 4: new           #22                 // class java/lang/IllegalArgumentException
+         * 7: dup
+         * 8: ldc           #23                 // String mixColor cannot be null
+         * 10: invokespecial #24                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+         * 13: athrow
+         * 14: aload_0
+         * 15: aload_1
+         * 16: putfield      #9                  // Field mixColor:Ljava/awt/Color;
+         * 19: return
+         *  */
+        // </editor-fold>
+    }
+
+    public float getMixValue() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #16                 // Field mixValue:F
+         * 4: freturn
+         *  */
+        // </editor-fold>
+    }
+
+    public Color getMixColor() {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #9                  // Field mixColor:Ljava/awt/Color;
+         * 4: areturn
+         *  */
+        // </editor-fold>
+    }
+}
