@@ -18,9 +18,9 @@ $CONFIG = array (
     ),
   ),
   'upgrade.disable-web' => true,
-  'instanceid' => 'ocnuhwwxe9z7',
-  'passwordsalt' => 'RDW1O91inGB2B5X4iTmIpb5Qf1nU4r',
-  'secret' => 'Q071pAVHKpZPTUmYQHNYCWFaNu3M7PM01Ae365O0koEjSuxf',
+  'instanceid' => 'och1zeizkv7e',
+  'passwordsalt' => 'FqOIs79aZZ3V5SJmfHh+3ujlPwEIwv',
+  'secret' => '/bycTr9QYwvUKRt/10AbUANXeRcBpGK0V38IiDBNDv9W+OFN',
   'trusted_domains' => 
   array (
     0 => 'localhost:8000',

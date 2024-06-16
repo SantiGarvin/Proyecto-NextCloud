@@ -19,7 +19,7 @@ services:
     restart: unless-stopped
     ports:
       - "8000:80"
-      - "8443:443"
+      #- "8443:443"
     links:
       - db
     volumes:
@@ -32,3 +32,15 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
+
+  haproxy:
+    image: haproxy:latest
+    restart: unless-stopped
+    ports:
+      - "9080:80"
+      - "1936:1936"
+
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    links:
+      - nextcloud
